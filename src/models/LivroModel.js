@@ -5,9 +5,11 @@ export default class Livros {
         id = null,
         titulo,
         autor,
-        genero,
+        genero_pt,
+        genero_en,
         ano,
-        movimento,
+        movimento_pt,
+        movimento_en,
         descricao_pt,
         descricao_en,
         enredo_pt = null,
@@ -30,9 +32,11 @@ export default class Livros {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
-        this.genero = genero;
+        this.genero_pt = genero_pt;
+        this.genero_en = genero_en;
         this.ano = ano;
-        this.movimento = movimento;
+        this.movimento_pt = movimento_pt;
+        this.movimento_en = movimento_en;
         this.descricao_pt = descricao_pt;
         this.descricao_en = descricao_en;
         this.enredo_pt = enredo_pt;
@@ -49,8 +53,8 @@ export default class Livros {
         this.caracteristicas_literarias_en = caracteristicas_literarias_en;
         this.conclusao_pt = conclusao_pt;
         this.conclusao_en = conclusao_en;
-        this.capaURL = capaURL;
-        this.videoURL = videoURL;
+        this.capa_url = this.capa_url;
+        this.video_url = this.video_url;
     }
 
     async criar() {
@@ -58,9 +62,11 @@ export default class Livros {
             data: {
                 titulo: this.titulo,
                 autor: this.autor,
-                genero: this.genero,
+                genero_pt: this.genero_pt,
+                genero_en: this.genero_en,
                 ano: this.ano,
-                movimento: this.movimento,
+                movimento_pt: this.movimento_pt,
+                movimento_en: this.movimento_en,
                 descricao_pt: this.descricao_pt,
                 descricao_en: this.descricao_en,
                 enredo_pt: this.enredo_pt,
@@ -77,8 +83,8 @@ export default class Livros {
                 caracteristicas_literarias_en: this.caracteristicas_literarias_en,
                 conclusao_pt: this.conclusao_pt,
                 conclusao_en: this.conclusao_en,
-                capaURL: this.capaURL,
-                videoURL: this.videoURL,
+                capa_url: this.capa_url,
+                video_url: this.video_url,
             },
         });
     }
@@ -145,6 +151,6 @@ export default class Livros {
         if (!data) {
             return null;
         }
-        return new LivroModel(data);
+        return new Livros(data);
     }
 }

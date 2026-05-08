@@ -1,4 +1,4 @@
-import LivroModel from '../models/LivroModel.js';
+import Livros from '../models/LivroModel.js';
 
 export const criar = async (req, res) => {
     try {
@@ -6,25 +6,57 @@ export const criar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const { titulo, autor,genero_pt, genero_en,movimento_pt, movimento_en,descricao_pt, descricao_en, ano } = req.body;
+        const {
+            titulo,
+            autor,
+            genero_pt,
+            genero_en,
+            movimento_pt,
+            movimento_en,
+            descricao_pt,
+            descricao_en,
+            ano,
+            enredo_pt,
+            enredo_en,
+            contexto_historico_pt,
+            contexto_historico_en,
+            detalhes_autor_pt,
+            detalhes_autor_en,
+            estilo_escrita_pt,
+            estilo_escrita_en,
+            verossimilhanca_pt,
+            verossimilhanca_en,
+            caracteristicas_literarias_pt,
+            caracteristicas_literarias_en,
+            conclusao_pt,
+            conclusao_en,
+            video_url,
+            capa_url,
+        } = req.body;
 
-        if (!titulo){
+        if (!titulo) {
             return res.status(400).json({ error: 'O campo "titulo" é obrigatório!' });
         }
-        if (!genero_pt & !genero_en){
-            return res.status(400).json({ error: 'O campo "genero_pt & genero_en" é obrigatório!' });
+        if (!genero_pt && !genero_en) {
+            return res
+                .status(400)
+                .json({ error: 'O campo "genero_pt & genero_en" é obrigatório!' });
         }
-        if (!movimento_pt & !movimento_en){
-            return res.status(400).json({ error: 'O campo "movimento_pt & movimento_en" é obrigatório!' });
+        if (!movimento_pt && !movimento_en) {
+            return res
+                .status(400)
+                .json({ error: 'O campo "movimento_pt & movimento_en" é obrigatório!' });
         }
-        if (!descricao_pt & !descricao_en){
-            return res.status(400).json({ error: 'O campo "descricao_pt & descricao_en" é obrigatório!' });
+        if (!descricao_pt && !descricao_en) {
+            return res
+                .status(400)
+                .json({ error: 'O campo "descricao_pt & descricao_en" é obrigatório!' });
         }
         if (ano === undefined || ano === null) {
             return res.status(400).json({ error: 'O campo "ano" é obrigatório!' });
         }
 
-        const livro = new LivroModel({
+        const livro = new Livros({
             titulo,
             autor,
             genero_pt,
@@ -44,7 +76,12 @@ export const criar = async (req, res) => {
             estilo_escrita_en,
             verossimilhanca_pt,
             verossimilhanca_en,
-            caracteristicas_literarias_pt ,caracteristicas_literarias_en, conclusao_pt, conclusao_en, video_url, capa_url,
+            caracteristicas_literarias_pt,
+            caracteristicas_literarias_en,
+            conclusao_pt,
+            conclusao_en,
+            video_url,
+            capa_url,
         });
         const data = await livro.criar();
 
@@ -57,7 +94,7 @@ export const criar = async (req, res) => {
 
 export const buscarTodos = async (req, res) => {
     try {
-        const livros = await LivroModel.buscarTodos(req.query);
+        const livros = await Livros.buscarTodos(req.query);
 
         if (!livros || livros.length === 0) {
             return res.status(400).json({ message: 'Nenhum registro encontrado.' });
@@ -78,7 +115,7 @@ export const buscarPorId = async (req, res) => {
             return res.status(400).json({ error: 'O ID enviado não é um número válido.' });
         }
 
-        const livro = await LivroModel.buscarPorId(parseInt(id));
+        const livro = await Livros.buscarPorId(parseInt(id));
 
         if (!livro) {
             return res.status(404).json({ error: 'Livro não encontrado.' });
@@ -103,7 +140,7 @@ export const atualizar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const livro = await LivroModel.buscarPorId(parseInt(id));
+        const livro = await Livros.buscarPorId(parseInt(id));
 
         if (!livro) {
             return res.status(404).json({ error: 'Registro não encontrado para atualizar.' });
@@ -166,12 +203,14 @@ export const atualizar = async (req, res) => {
         if (req.body.conclusao_en !== undefined) livro.conclusao_en = req.body.conclusao_en;
 
         if (req.body.video_url !== undefined) livro.video_url = req.body.video_url;
-        
+
         if (req.body.capa_url !== undefined) livro.capa_url = req.body.capa_url;
 
         const data = await livro.atualizar();
 
-        return res.status(200).json({ message: `O registro "${data.titulo}" foi atualizado com sucesso!`, data });
+        return res
+            .status(200)
+            .json({ message: `O registro "${data.titulo}" foi atualizado com sucesso!`, data });
     } catch (error) {
         console.error('Erro ao atualizar:', error);
         return res.status(500).json({ error: 'Erro ao atualizar registro.' });
@@ -186,7 +225,7 @@ export const deletar = async (req, res) => {
             return res.status(400).json({ error: 'ID inválido.' });
         }
 
-        const livro = await LivroModel.buscarPorId(parseInt(id));
+        const livro = await Livros.buscarPorId(parseInt(id));
 
         if (!livro) {
             return res.status(404).json({ error: 'Registro não encontrado para deletar.' });
@@ -194,7 +233,10 @@ export const deletar = async (req, res) => {
 
         await livro.deletar();
 
-        return res.status(200).json({ message: `O registro "${livro.titulo}" foi deletado com sucesso!`, deletado: livro });
+        return res.status(200).json({
+            message: `O registro "${livro.titulo}" foi deletado com sucesso!`,
+            deletado: livro,
+        });
     } catch (error) {
         console.error('Erro ao deletar:', error);
         return res.status(500).json({ error: 'Erro ao deletar registro.' });

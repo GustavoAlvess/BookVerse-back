@@ -50,7 +50,6 @@ model Livro {
     simulados    Simulado[]
     curiosidades Curiosidade[]
 
-
     criado_em DateTime @default(now()) @map("created_at")
 
     @@map("livros")
@@ -128,4 +127,15 @@ model Usuario {
     senha_hash String
 
     @@map("usuarios")
+}
+
+// Equipe
+model Equipe {
+    id       Int    @id @default(autoincrement())
+    nome     String
+    objetivo String
+    curso    String
+    fotoURL  String
+
+    @@map("equipes")
 }

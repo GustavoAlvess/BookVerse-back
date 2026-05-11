@@ -16,8 +16,8 @@ export default class Livros {
         enredo_en = null,
         contexto_historico_pt = null,
         contexto_historico_en = null,
-        capaURL = null,
-        videoURL = null,
+        capa_url = null,
+        video_url = null,
         detalhes_autor_pt = null,
         detalhes_autor_en = null,
         estilo_escrita_pt = null,
@@ -114,8 +114,8 @@ export default class Livros {
                 caracteristicas_literarias_en: this.caracteristicas_literarias_en,
                 conclusao_pt: this.conclusao_pt,
                 conclusao_en: this.conclusao_en,
-                capaURL: this.capaURL,
-                videoURL: this.videoURL,
+                capa_url: this.capa_url,
+                video_url: this.video_url,
             },
         });
     }

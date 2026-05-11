@@ -6,10 +6,10 @@ export const criar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const { livro_id, titulo_pt, titulo_en, conteudo_pt, conteudo_en, categoria } = req.body;
+        const { livro_id, titulo_pt, titulo_en, conteudo_pt, conteudo_en, categoria_pt, categoria_en } = req.body;
 
-        if (!livro_id || !titulo_pt || !titulo_en || !conteudo_pt || !conteudo_en) {
-            return res.status(400).json({ error: 'Todos os campos de título e conteúdo (PT/EN) são obrigatórios!' });
+        if (!livro_id || !titulo_pt || !titulo_en || !conteudo_pt || !conteudo_en  || !categoria_pt || !categoria_en) {
+            return res.status(400).json({ error: 'Todos os campos de  livro_id, categoria ,título e conteúdo (PT/EN) são obrigatórios!' });
         }
         const existentes = await CuriosidadeModel.buscarTodos({ livro_id });
         if (existentes.some(c => c.titulo_pt.toLowerCase() === titulo_pt.toLowerCase())) {
@@ -17,7 +17,7 @@ export const criar = async (req, res) => {
         }
 
         const curiosidade = new CuriosidadeModel({
-            livro_id, titulo_pt, titulo_en, conteudo_pt, conteudo_en, categoria
+            livro_id, titulo_pt, titulo_en, conteudo_pt, conteudo_en, categoria_pt, categoria_en
         });
 
         const data = await curiosidade.criar();

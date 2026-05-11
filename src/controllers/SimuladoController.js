@@ -7,29 +7,86 @@ export const criar = async (req, res) => {
     }
 
     const {
-      livro_id,
-      pergunta_pt,
-      pergunta_en,
-      opcao_a,
-      opcao_b,
-      opcao_c,
-      opcao_d,
-      resposta_correta,
-      explicacao_pt,
-      explicacao_en,
+        livro_id,
+        pergunta_pt,
+        pergunta_en,
+        opcao_a,
+        opcao_b,
+        opcao_c,
+        opcao_d,
+        opcao_a_en,
+        opcao_b_en,
+        opcao_c_en,
+        opcao_d_en,
+        resposta_correta,
+        explicacao_pt,
+        explicacao_en,
     } = req.body;
 
-    if (
-      !livro_id ||
-      !pergunta_pt ||
-      !resposta_correta ||
-      !opcao_a ||
-      !opcao_b
-    ) {
-      return res
-        .status(400)
-        .json({ error: "Faltam dados obrigatórios para o simulado!" });
-    }
+ if (!livro_id) {
+     return res.status(400).json({
+         error: 'O campo livro_id é obrigatório!',
+     });
+ }
+
+ if (!pergunta_pt) {
+     return res.status(400).json({
+         error: 'O campo pergunta_pt é obrigatório!',
+     });
+ }
+
+ if (!resposta_correta) {
+     return res.status(400).json({
+         error: 'O campo resposta_correta é obrigatório!',
+     });
+ }
+
+ if (!opcao_a) {
+     return res.status(400).json({
+         error: 'O campo opcao_a é obrigatório!',
+     });
+ }
+
+ if (!opcao_b) {
+     return res.status(400).json({
+         error: 'O campo opcao_b é obrigatório!',
+     });
+ }
+ if (!opcao_c) {
+     return res.status(400).json({
+         error: 'O campo opcao_c é obrigatório!',
+     });
+ }
+
+ if (!opcao_d) {
+     return res.status(400).json({
+         error: 'O campo opcao_d é obrigatório!',
+     });
+      }
+
+
+ if (!opcao_a_en) {
+     return res.status(400).json({
+         error: 'O campo opcao_a_en é obrigatório!',
+     });
+ }
+
+ if (!opcao_b_en) {
+     return res.status(400).json({
+         error: 'O campo opcao_b_en é obrigatório!',
+     });
+ }
+ if (!opcao_c_en) {
+     return res.status(400).json({
+         error: 'O campo opcao_c_en é obrigatório!',
+     });
+ }
+
+ if (!opcao_d_en) {
+     return res.status(400).json({
+         error: 'O campo opcao_d_en é obrigatório!',
+     });
+ }
 
     const respostaFormatada = resposta_correta.toUpperCase();
     const opcoesValidas = ["A", "B", "C", "D"];
@@ -50,16 +107,20 @@ export const criar = async (req, res) => {
     }
 
     const simulado = new SimuladoModel({
-      livro_id,
-      pergunta_pt,
-      pergunta_en,
-      opcao_a,
-      opcao_b,
-      opcao_c,
-      opcao_d,
-      resposta_correta: respostaFormatada,
-      explicacao_pt,
-      explicacao_en,
+        livro_id,
+        pergunta_pt,
+        pergunta_en,
+        opcao_a,
+        opcao_b,
+        opcao_c,
+        opcao_d,
+        opcao_a_en,
+        opcao_b_en,
+        opcao_c_en,
+        opcao_d_en,
+        resposta_correta: respostaFormatada,
+        explicacao_pt,
+        explicacao_en,
     });
 
     const data = await simulado.criar();

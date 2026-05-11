@@ -3,7 +3,7 @@ import 'dotenv/config';
 import pkg from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 
-const { PrismaClient } = pkg;
+const { PrismaClient, Categoria, Categoria_en } = pkg;
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
@@ -83,15 +83,33 @@ async function main() {
         },
     });
 
+    console.log('Iniciando seed de personagens...');
+    const personagem1 = await prisma.personagem.create({
+  data: {
+    livro_id: 1,
+    nome: "Sherlock Holmes",
+    descricao_pt:
+      "Detetive extremamente inteligente conhecido por sua habilidade de dedução.",
+    descricao_en:
+      "Highly intelligent detective known for his deduction skills.",
+
+    papel: "Protagonista",
+
+    imagem_url:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+  },
+})
+
     console.log('Iniciando seed de curiosidades...');
     const curiosidade1 = await prisma.curiosidade.create({
         data: {
             livro_id: livro.id,
-            categoria_pt: 'Estilo',
-            categoria_en: 'Style',
+            categoria_pt: Categoria.Redacao,
+            categoria_en: Categoria_en.Writing,
             titulo_pt: 'Capítulos Desconexos',
             titulo_en: 'Disconnected Chapters',
-            conteudo_pt: 'O livro foi escrito de forma que os capítulos pudessem ser lidos em quase qualquer ordem.',
+            conteudo_pt:
+                'O livro foi escrito de forma que os capítulos pudessem ser lidos em quase qualquer ordem.',
             conteudo_en: 'The book was written so that chapters could be read in almost any order.',
         },
     });
@@ -99,8 +117,8 @@ async function main() {
     const curiosidade2 = await prisma.curiosidade.create({
         data: {
             livro_id: livro.id,
-            categoria_pt: 'Personagem',
-            categoria_en: 'Character',
+            categoria_pt: Categoria.Dicas,
+            categoria_en: Categoria_en.Tips,
             titulo_pt: 'Baleia',
             titulo_en: 'Baleia',
             conteudo_pt: 'A cadela Baleia é um dos personagens mais humanizados da obra.',

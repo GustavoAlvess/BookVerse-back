@@ -18,22 +18,22 @@ export const criar = async (req, res) => {
         }
 
         const personagemExistente = await PersonagemModel.buscarTodos({ nome });
-        
+
         if (personagemExistente && personagemExistente.length > 0) {
-            return res.status(400).json({ 
-                error: `O personagem "${nome}" já está cadastrado no sistema!` 
+            return res.status(400).json({
+                error: `O personagem "${nome}" já está cadastrado no sistema!`
             });
         }
 
-        const personagem = new PersonagemModel({ 
-            livro_id: parseInt(livro_id), 
-            nome, 
-            descricao_pt, 
-            descricao_en, 
-            papel, 
-            imagem_url 
+        const personagem = new PersonagemModel({
+            livro_id: parseInt(livro_id),
+            nome,
+            descricao_pt,
+            descricao_en,
+            papel,
+            imagem_url
         });
-        
+
         const data = await personagem.criar();
 
         return res.status(201).json({ message: 'Personagem criado com sucesso!', data });
@@ -92,13 +92,13 @@ export const atualizar = async (req, res) => {
         if (!personagem) {
             return res.status(404).json({ error: 'Personagem não encontrado para atualizar.' });
         }
-        if (nome !== undefined && nome !== personagem.nome) {
-            
+        if (personagem.nome !== undefined && personagem.nome !== personagem.nome) {
+
             const duplicado = await PersonagemModel.buscarTodos({ nome });
-            
+
             if (duplicado && duplicado.length > 0) {
-                return res.status(400).json({ 
-                    error: `Não é possível mudar para o nome "${nome}", pois outro personagem já o utiliza!` 
+                return res.status(400).json({
+                    error: `Não é possível mudar para o nome "${nome}", pois outro personagem já o utiliza!`
                 });
             }
             personagem.nome = nome;
@@ -137,9 +137,9 @@ export const deletar = async (req, res) => {
 
         await personagem.deletar();
 
-        return res.status(200).json({ 
-            message: `O personagem "${personagem.nome}" foi deletado com sucesso!`, 
-            deletado: personagem 
+        return res.status(200).json({
+            message: `O personagem "${personagem.nome}" foi deletado com sucesso!`,
+            deletado: personagem
         });
     } catch (error) {
         console.error('Erro ao deletar personagem:', error);

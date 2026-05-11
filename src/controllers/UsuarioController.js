@@ -1,4 +1,4 @@
-import PersonagemModel from '../models/UsuarioModel.js';
+import UsuarioModel from '../models/UsuarioModel.js';
 
 export const criar = async (req, res) => {
     try {
@@ -86,12 +86,11 @@ export const atualizar = async (req, res) => {
         }
 
         const usuario = await UsuarioModel.buscarPorId(parseInt(id));
-        usuario.nome = nome;
 
         if (!usuario) {
             return res.status(404).json({ error: 'Usuario não encontrado para atualizar.' });
         }
-        if (nome !== undefined && nome !== usuario.nome) {
+        if (usuario.nome !== undefined && usuario.nome !== usuario.nome) {
             const duplicado = await UsuarioModel.buscarTodos({ nome });
 
             if (duplicado && duplicado.length > 0) {
@@ -125,7 +124,7 @@ export const deletar = async (req, res) => {
             return res.status(400).json({ error: 'ID inválido.' });
         }
 
-        const usuario = await EquipeModel.buscarPorId(parseInt(id));
+        const usuario = await UsuarioModel.buscarPorId(parseInt(id));
 
         if (!usuario) {
             return res.status(404).json({ error: 'Usuario não encontrado para deletar.' });

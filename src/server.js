@@ -6,6 +6,7 @@ import simuladoRoutes from "./routes/simuladoRoutes.js";
 import CuriosidadeRoute from './routes/CuriosidadeRoute.js';
 import EquipeRoute from './routes/EquipeRoute.js';
 import UsuarioRoute from './routes/UsuarioRoute.js';
+import ApiKey from './lib/middlewares/ApiKey.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,12 +18,12 @@ app.get('/', (req, res) => {
 });
 
 // Rotas
-app.use('/livros', LivroRoute);
-app.use('/personagem', PersonagemRoute);
-app.use("/simulados", simuladoRoutes);
-app.use('/curiosidades', CuriosidadeRoute);
-app.use('/equipes', EquipeRoute);
-app.use('/usuario', UsuarioRoute);
+app.use('/livros',ApiKey, LivroRoute);
+app.use('/personagem',ApiKey, PersonagemRoute);
+app.use("/simulados",ApiKey, simuladoRoutes);
+app.use('/curiosidades',ApiKey, CuriosidadeRoute);
+app.use('/membros',ApiKey, EquipeRoute);
+app.use('/usuarios',ApiKey, UsuarioRoute);
 app.use((req, res) => {
     res.status(404).json({ error: 'Rota não encontrada' });
 });

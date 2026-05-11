@@ -17,6 +17,7 @@ async function main() {
     await prisma.personagem.deleteMany();
     await prisma.livro.deleteMany();
     await prisma.usuario.deleteMany();
+    await prisma.equipe.deleteMany();
 
     console.log('Iniciando seed de usuários...');
     const user1 = await prisma.usuario.create({
@@ -32,6 +33,26 @@ async function main() {
             nome: 'Estudante Teste',
             email: 'aluno@email.com',
             senha_hash: 'aluno123',
+        },
+    });
+
+    console.log('Iniciando seed da equipe...');
+    // <-- Bloco adicionado para popular a tabela Equipe
+    const membroEquipe1 = await prisma.equipe.create({
+        data: {
+            nome: 'Desenvolvedor(a) Fullstack',
+            objetivo: 'Desenvolvimento da plataforma, banco de dados e integração da API.',
+            curso: 'Ciência da Computação',
+            fotoURL: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
+        },
+    });
+
+    const membroEquipe2 = await prisma.equipe.create({
+        data: {
+            nome: 'Curador(a) de Conteúdo',
+            objetivo: 'Elaboração das questões, resumos e curiosidades literárias.',
+            curso: 'Letras - Português/Inglês',
+            fotoURL: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
         },
     });
 
@@ -128,6 +149,7 @@ async function main() {
 
     console.log('✅ Seed finalizado com sucesso!');
     console.log(`Usuários: ${user1.email}, ${user2.email}`);
+    console.log(`Membros da equipe criados: 2`);
     console.log(`Livro: ${livro.titulo} (ID: ${livro.id})`);
     console.log(`Curiosidades criadas: 2`);
     console.log(`Questões criadas para este livro: 2`);

@@ -8,33 +8,28 @@ export const criar = async (req, res) => {
 
         const {
             nome,
-            objetivo,
-            curso,
-            fotoURL,
+            email,
+            senha_hash,
         } = req.body;
 
         if (!nome) {
             return res.status(400).json({ error: 'O campo "nome" é obrigatório!' });
         }
 
-        if (!objetivo) {
-            return res.status(400).json({ error: 'O campo "objetivo" é obrigatório!' });
+        if (!email) {
+            return res.status(400).json({ error: 'O campo "email" é obrigatório!' });
         }
 
-        if (!curso) {
-            return res.status(400).json({ error: 'O campo "curso" é obrigatório!' });
-        }
-        if (!fotoURL) {
-            return res.status(400).json({ error: 'O campo "fotoURL" é obrigatório!' });
+        if (!senha_hash) {
+            return res.status(400).json({ error: 'O campo "senha_hash" é obrigatório!' });
         }
 
-        const membro = new EquipeModel({
+        const usuario = new UsuarioModel({
             nome,
-            objetivo,
-            curso,
-            fotoURL,
+            email,
+            senha_hash,
         });
-        const data = await membro.criar();
+        const data = await usuario.criar();
 
         return res.status(201).json({ message: 'Registro criado com sucesso!', data });
     } catch (error) {
@@ -45,16 +40,16 @@ export const criar = async (req, res) => {
 
 export const buscarTodos = async (req, res) => {
     try {
-        const membros = await EquipeModel.buscarTodos(req.query);
+        const usuario = await UsuarioModel.buscarTodos(req.query);
 
-        if (!membros || membros.length === 0) {
+        if (!usuario || usuario.length === 0) {
             return res.status(400).json({ message: 'Nenhum registro encontrado.' });
         }
 
-        return res.status(200).json(membros);
+        return res.status(200).json(usuario);
     } catch (error) {
         console.error('Erro ao buscar:', error);
-        return res.status(500).json({ error: 'Erro ao buscar membros.' });
+        return res.status(500).json({ error: 'Erro ao buscar usuario.' });
     }
 };
 
@@ -66,16 +61,16 @@ export const buscarPorId = async (req, res) => {
             return res.status(400).json({ error: 'O ID enviado não é um número válido.' });
         }
 
-        const membro = await EquipeModel.buscarPorId(parseInt(id));
+        const usuario = await UsuarioModel.buscarPorId(parseInt(id));
 
-        if (!membro) {
-            return res.status(404).json({ error: 'Membro não encontrado.' });
+        if (!usuario) {
+            return res.status(404).json({ error: 'usuario não encontrado.' });
         }
 
-        return res.status(200).json({ data: membro });
+        return res.status(200).json({ data: usuario });
     } catch (error) {
         console.error('Erro ao buscar:', error);
-        return res.status(500).json({ error: 'Erro ao buscar membro.' });
+        return res.status(500).json({ error: 'Erro ao buscar usuario.' });
     }
 };
 
@@ -91,22 +86,19 @@ export const atualizar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const membro = await EquipeModel.buscarPorId(parseInt(id));
+        const usuario = await UsuarioModel.buscarPorId(parseInt(id));
 
-        if (!membro) {
+        if (!usuario) {
             return res.status(404).json({ error: 'Registro não encontrado para atualizar.' });
         }
 
-        if (req.body.nome !== undefined) membro.nome = req.body.nome;
+        if (req.body.nome !== undefined) usuario.nome = req.body.nome;
 
-        if (req.body.objetivo !== undefined) membro.objetivo = req.body.objetivo;
+        if (req.body.objetivo !== undefined) usuario.email = req.body.email;
 
-        if (req.body.curso !== undefined) membro.curso = req.body.curso;
+        if (req.body.curso !== undefined) usuario.senha_hash = req.body.senha_hash;
 
-        if (req.body.fotoURL !== undefined) membro.fotoURL = req.body.fotoURL;
-
-
-        const data = await membro.atualizar();
+        const data = await usuario.atualizar();
 
         return res
             .status(200)
@@ -125,17 +117,17 @@ export const deletar = async (req, res) => {
             return res.status(400).json({ error: 'ID inválido.' });
         }
 
-        const membro = await EquipeModel.buscarPorId(parseInt(id));
+        const usuario = await UsuarioModel.buscarPorId(parseInt(id));
 
-        if (!membro) {
+        if (!usuario) {
             return res.status(404).json({ error: 'Registro não encontrado para deletar.' });
         }
 
-        await membro.deletar();
+        await usuario.deletar();
 
         return res.status(200).json({
-            message: `O registro "${membro.nome}" foi deletado com sucesso!`,
-            deletado: membro,
+            message: `O registro "${usuario.nome}" foi deletado com sucesso!`,
+            deletado: usuario,
         });
     } catch (error) {
         console.error('Erro ao deletar:', error);

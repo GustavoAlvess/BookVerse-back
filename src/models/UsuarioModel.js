@@ -1,21 +1,20 @@
 import prisma from '../lib/services/prismaClient.js';
 
-export default class EquipeModel {
-    constructor({ id = null, nome, objetivo, curso, fotoURL } = {}) {
+export default class UsuarioModel {
+    constructor({ id = null, nome, email, senha_hash,  } = {}) {
         this.id = id;
         this.nome = nome;
-        this.objetivo = objetivo;
-        this.curso = curso;
-        this.fotoURL = fotoURL;
+        this.email = email;
+        this.senha_hash = senha_hash;
+
     }
 
     async criar() {
-        return prisma.equipe.create({
+        return prisma.usuario.create({
             data: {
                 nome: this.nome,
-                objetivo: this.objetivo,
-                curso: this.curso,
-                fotoURL: this.fotoURL,
+                email: this.email,
+                senha_hash: this.senha_hash,
             },
         });
     }
@@ -25,31 +24,28 @@ export default class EquipeModel {
         if (filtros.nome) {
             where.nome = { contains: filtros.nome, mode: 'insensitive' };
         }
-        if (filtros.curso) {
-            where.curso = { contains: filtros.curso, mode: 'insensitive' };
-        }
-        return prisma.equipe.findMany({ where });
+
+        return prisma.usuario.findMany({ where });
     }
 
     static async buscarPorId(id) {
-        const data = await prisma.equipe.findUnique({ where: { id: parseInt(id) } });
+        const data = await prisma.usuario.findUnique({ where: { id: parseInt(id) } });
         if (!data) return null;
-        return new EquipeModel(data);
+        return new UsuarioModel(data);
     }
 
     async atualizar() {
-        return prisma.equipe.update({
+        return prisma.usuario.update({
             where: { id: parseInt(this.id) },
             data: {
                 nome: this.nome,
-                objetivo: this.objetivo,
-                curso: this.curso,
-                fotoURL: this.fotoURL,
+                email: this.email,
+                senha_hash: this.senha_hash,
             },
         });
     }
 
     async deletar() {
-        return prisma.equipe.delete({ where: { id: parseInt(this.id) } });
+        return prisma.usuario.delete({ where: { id: parseInt(this.id) } });
     }
 }

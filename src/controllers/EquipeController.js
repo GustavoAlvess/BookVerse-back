@@ -2,24 +2,46 @@ import PersonagemModel from '../models/EquipeModel.js';
 
 export const criar = async (req, res) => {
     try {
-        if (!req.body || Object.keys(req.body).length === 0) {
+        if (!req.body) {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
+        const { nome, objetivo, curso, fotoURL } = req.body;
 
-        const membro = new EquipeModel(req.body);
+        if (!nome) {
+            return res.status(400).json({ error: 'O campo "nome" é obrigatório!' });
+        }
+        if (!objetivo ) {
+            return res.status(400).json({ error: 'O campo "objetivo" é obrigatório!' });
+        }
+        if (!curso ) {
+            return res.status(400).json({ error: 'O campo "curso" é obrigatório!' });
+        }
+        if (!fotoURL ) {
+            return res.status(400).json({ error: 'O campo "fotoURL" é obrigatório!' });
+        }
+
+        const membroExistente = await EquipeModel.buscarTodos({ nome });
+
+        if (membroExistente && membroExistente.length > 0) {
+            return res.status(400).json({
+                error: `O membro "${nome}" já está cadastrado no sistema!`
+            });
+        }
+
+        const membro = new EquipeModel({
+            nome,
+            objetivo,
+            curso,
+            fotoURL
+
+        });
 
         const data = await membro.criar();
 
-        return res.status(201).json({
-            message: 'Membro criado com sucesso!',
-            data,
-        });
+        return res.status(201).json({ message: 'Membro criado com sucesso!', data });
     } catch (error) {
-        console.error('Erro ao criar membro:', error.message);
-
-        return res.status(400).json({
-            error: error.message || 'Erro interno ao salvar o membro.',
-        });
+        console.error('Erro ao criar membro:', error);
+        return res.status(500).json({ error: 'Erro interno ao salvar o membro.' });
     }
 };
 

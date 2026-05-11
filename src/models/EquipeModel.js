@@ -9,39 +9,7 @@ export default class EquipeModel {
         this.fotoURL = fotoURL;
     }
 
-    validar() {
-
-        // usando o trim para tirar os espaços vazios e garantir que o campo tenha pelo menos 1 caractere visível
-
-        if (!this.nome || this.nome.trim() === '') {
-            throw new Error('O campo "nome" é obrigatório!');
-        }
-        if (!this.objetivo || this.objetivo.trim() === '') {
-            throw new Error('O campo "objetivo" é obrigatório!');
-        }
-        if (!this.curso || this.curso.trim() === '') {
-            throw new Error('O campo "curso" é obrigatório!');
-        }
-        if (!this.fotoURL || this.fotoURL.trim() === '') {
-            throw new Error('O campo "fotoURL" é obrigatório!');
-        }
-
-    }
-
     async criar() {
-
-        this.validar();
-
-        const existente = await prisma.equipe.findFirst({
-            where: {
-                nome: this.nome,
-            },
-        });
-
-        if (existente) {
-            throw new Error('Este membro já está cadastrado no sistema!');
-        }
-
         return prisma.equipe.create({
             data: {
                 nome: this.nome,
@@ -53,9 +21,6 @@ export default class EquipeModel {
     }
 
     async atualizar() {
-
-         this.validar();
-
         return prisma.equipe.update({
             where: { id: parseInt(this.id) },
             data: {

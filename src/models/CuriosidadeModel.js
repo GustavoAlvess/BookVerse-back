@@ -8,7 +8,8 @@ export default class CuriosidadeModel {
         titulo_en,
         conteudo_pt,
         conteudo_en,
-        categoria = null
+        categoria_pt,
+        categoria_en
     } = {}) {
         this.id = id;
         this.livro_id = livro_id;
@@ -16,7 +17,8 @@ export default class CuriosidadeModel {
         this.titulo_en = titulo_en;
         this.conteudo_pt = conteudo_pt;
         this.conteudo_en = conteudo_en;
-        this.categoria = categoria;
+        this.categoria_pt = categoria_pt;
+        this.categoria_en = categoria_en;
     }
 
     async criar() {
@@ -27,7 +29,8 @@ export default class CuriosidadeModel {
                 titulo_en: this.titulo_en,
                 conteudo_pt: this.conteudo_pt,
                 conteudo_en: this.conteudo_en,
-                categoria: this.categoria,
+                categoria_pt: this.categoria_pt,
+                categoria_en: this.categoria_en,
             },
         });
     }
@@ -51,8 +54,8 @@ export default class CuriosidadeModel {
                 titulo_pt: this.titulo_pt,
                 titulo_en: this.titulo_en,
                 conteudo_pt: this.conteudo_pt,
-                conteudo_en: this.conteudo_en,
-                categoria: this.categoria,
+                categoria_pt: this.categoria_pt,
+                categoria_en: this.categoria_en,
             },
         });
     }

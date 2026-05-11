@@ -5,6 +5,7 @@ import PersonagemRoute from './routes/PersonagemRoute.js'
 import simuladoRoutes from "./routes/simuladoRoutes.js";
 import CuriosidadeRoute from './routes/CuriosidadeRoute.js';
 import EquipeRoute from './routes/EquipeRoute.js';
+import UsuarioRoute from './routes/UsuarioRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,6 +22,7 @@ app.use('/personagem', PersonagemRoute);
 app.use("/simulados", simuladoRoutes);
 app.use('/curiosidades', CuriosidadeRoute);
 app.use('/equipes', EquipeRoute);
+app.use('/usuarios', UsuarioRoute);
 
 app.use((req, res) => {
     res.status(404).json({ error: 'Rota não encontrada' });

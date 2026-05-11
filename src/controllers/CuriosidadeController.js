@@ -11,6 +11,22 @@ export const criar = async (req, res) => {
         if (!livro_id || !titulo_pt || !titulo_en || !conteudo_pt || !conteudo_en  || !categoria_pt || !categoria_en) {
             return res.status(400).json({ error: 'Todos os campos de  livro_id, categoria ,título e conteúdo (PT/EN) são obrigatórios!' });
         }
+
+        const categoriasValidasPT = ['Dicas', 'Redacao', 'Curiosidades'];
+        const categoriasValidasEN = ['Tips', 'Writing', 'Curiosities'];
+
+        if (
+            !categoriasValidasPT.includes(categoria_pt) ||
+            !categoriasValidasEN.includes(categoria_en)
+        ) {
+            return res.status(400).json({
+                error: 'Categoria inválida!',
+                valores_aceitos: {
+                    categoria_pt: categoriasValidasPT,
+                    categoria_en: categoriasValidasEN,
+                },
+            });
+        }
         const existentes = await CuriosidadeModel.buscarTodos({ livro_id });
         if (existentes.some(c => c.titulo_pt.toLowerCase() === titulo_pt.toLowerCase())) {
             return res.status(400).json({ error: `A curiosidade "${titulo_pt}" já existe para este livro!` });

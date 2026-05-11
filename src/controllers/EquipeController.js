@@ -1,4 +1,4 @@
-import PersonagemModel from '../models/EquipeModel.js';
+import EquipeModel from '../models/EquipeModel.js';
 
 export const criar = async (req, res) => {
     try {

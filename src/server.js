@@ -8,6 +8,7 @@ import EquipeRoute from './routes/EquipeRoute.js';
 import UsuarioRoute from './routes/UsuarioRoute.js';
 import ApiKey from './lib/middlewares/ApiKey.js';
 import cors from 'cors';
+import IntegracaoRoute from './routes/IntegracaoRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -30,7 +31,8 @@ app.use('/personagem',ApiKey, PersonagemRoute);
 app.use("/simulados",ApiKey, simuladoRoutes);
 app.use('/curiosidades',ApiKey, CuriosidadeRoute);
 app.use('/membros',ApiKey, EquipeRoute);
-app.use('/usuarios',ApiKey, UsuarioRoute);
+app.use('/usuarios', ApiKey, UsuarioRoute);
+app.use('/api', IntegracaoRoute);
 app.use((req, res) => {
     res.status(404).json({ error: 'Rota não encontrada' });
 });

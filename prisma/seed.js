@@ -37,7 +37,6 @@ async function main() {
     });
 
     console.log('Iniciando seed da equipe...');
-    // <-- Bloco adicionado para popular a tabela Equipe
     const membroEquipe1 = await prisma.equipe.create({
         data: {
             nome: 'Breno Belmonte',
@@ -323,13 +322,12 @@ async function main() {
             opcao_a: 'a) Constituem um traço de estilo típico dos romances de Graciliano Ramos e do Regionalismo nordestino.',
             opcao_b: 'b) Indicam que ele pertence à fase inicial de Graciliano Ramos, quando este ainda seguia os ditames do primeiro momento do Modernismo.',
             opcao_c: 'c) Diminuem o seu alcance expressivo, na medida em que dificultam uma visão adequada da realidade sertaneja.',
-            opcao_d: 'd) Revelam, nele, a influência da prosa seca e lacônica de Euclides da Cunha, em Os sertões.',
-            opcao_e: 'e) Relacionam-se à visão limitada e fragmentária que as próprias personagens têm do mundo',
+            opcao_d: 'd) Relacionam-se à visão limitada e fragmentária que as próprias personagens têm do mundo',
             opcao_a_en: '',
             opcao_b_en: '',
             opcao_c_en: '',
             opcao_d_en: '',
-            resposta_correta: 'e',
+            resposta_correta: 'd',
             explicacao_pt: 'A estrutura fragmentada de Vidas Secas representa a visão limitada das personagens sobre o mundo, já que elas vivem em condições de miséria, pouca educação e dificuldade de compreensão da própria realidade.',
             explicacao_en: '',
         },

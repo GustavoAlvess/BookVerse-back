@@ -6,21 +6,70 @@ export const criar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const { livro_id, titulo_pt, titulo_en, conteudo_pt, conteudo_en, categoria } = req.body;
+        const {
+            livro_id,
+            titulo_pt,
+            titulo_en,
+            conteudo_pt,
+            conteudo_en,
+            categoria_pt,
+            categoria_en,
+        } = req.body;
 
-        if (!livro_id || !titulo_pt || !titulo_en || !conteudo_pt || !conteudo_en) {
-            return res.status(400).json({ error: 'Todos os campos de título e conteúdo (PT/EN) são obrigatórios!' });
+       if (
+           !livro_id ||
+           !titulo_pt ||
+           !titulo_en ||
+           !conteudo_pt ||
+           !conteudo_en ||
+           !categoria_pt ||
+           !categoria_en
+       ) {
+           return res
+               .status(400)
+               .json({
+                   error: 'Todos os campos de livro_id, categoria, título e conteúdo (PT/EN) são obrigatórios!',
+               });
+        }
+
+        const categoriasValidasPT = ['Dicas', 'Redacao', 'Curiosidades'];
+        const categoriasValidasEN = ['Tips', 'Writing', 'Curiosities'];
+
+        if (
+            !categoriasValidasPT.includes(categoria_pt) ||
+            !categoriasValidasEN.includes(categoria_en)
+        ) {
+            return res.status(400).json({
+                error: 'Categoria inválida!',
+                valores_aceitos: {
+                    categoria_pt: categoriasValidasPT,
+                    categoria_en: categoriasValidasEN,
+                },
+            });
         }
         const existentes = await CuriosidadeModel.buscarTodos({ livro_id });
-        if (existentes.some(c => c.titulo_pt.toLowerCase() === titulo_pt.toLowerCase())) {
-            return res.status(400).json({ error: `A curiosidade "${titulo_pt}" já existe para este livro!` });
+        if (existentes.some((c) => c.titulo_pt.toLowerCase() === titulo_pt.toLowerCase())) {
+            return res
+                .status(400)
+                .json({ error: `A curiosidade "${titulo_pt}" já existe para este livro!` });
         }
 
         const curiosidade = new CuriosidadeModel({
-            livro_id, titulo_pt, titulo_en, conteudo_pt, conteudo_en, categoria
+            livro_id,
+            titulo_pt,
+            titulo_en,
+            conteudo_pt,
+            conteudo_en,
+            categoria_pt,
+            categoria_en,
         });
 
         const data = await curiosidade.criar();
+         if (req.body.titulo_en) curiosidade.titulo_en = req.body.titulo_en;
+         if (req.body.conteudo_pt) curiosidade.conteudo_pt = req.body.conteudo_pt;
+        if (req.body.conteudo_en) curiosidade.conteudo_en = req.body.conteudo_en;
+        if (req.body.categoria_pt) curiosidade.categoria_pt = req.body.categoria_pt;
+        if (req.body.categoria_en) curiosidade.categoria_en = req.body.categoria_en;
         return res.status(201).json({ message: 'Curiosidade criada com sucesso!', data });
 
     } catch (error) {
@@ -67,8 +116,9 @@ export const atualizar = async (req, res) => {
         if (req.body.titulo_en) curiosidade.titulo_en = req.body.titulo_en;
         if (req.body.conteudo_pt) curiosidade.conteudo_pt = req.body.conteudo_pt;
         if (req.body.conteudo_en) curiosidade.conteudo_en = req.body.conteudo_en;
-        if (req.body.categoria) curiosidade.categoria = req.body.categoria;
-
+        if (req.body.categoria_pt) curiosidade.categoria_pt = req.body.categoria_pt;
+        if (req.body.categoria_en) curiosidade.categoria_en = req.body.categoria_en;
+        
         const data = await curiosidade.atualizar();
         return res.status(200).json({ message: 'Curiosidade atualizada!', data });
     } catch (error) {

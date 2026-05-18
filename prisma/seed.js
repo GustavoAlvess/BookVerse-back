@@ -3,7 +3,7 @@ import 'dotenv/config';
 import pkg from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 
-const { PrismaClient } = pkg;
+const { PrismaClient, Categoria, Categoria_en } = pkg;
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
@@ -53,7 +53,7 @@ async function main() {
             nome: 'Felipe Campos',
             objetivo: 'Desenvolvedor back end, api, banco de dados e integração.',
             curso: 'Desenvolvimento de Sistemas',
-            fotoURL: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+            fotoURL: '',
         },
     });
 
@@ -145,15 +145,6 @@ async function main() {
 
     const membroEquipe12 = await prisma.equipe.create({
         data: {
-            nome: 'Felipe',
-            objetivo: 'Elaboração das questões, resumos e curiosidades literárias.',
-            curso: 'Letras - Português/Inglês',
-            fotoURL: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
-        },
-    });
-
-    const membroEquipe13 = await prisma.equipe.create({
-        data: {
             nome: 'Letícia Maria',
             objetivo: 'Desenvolvedora front-end.',
             curso: 'Desenvolvimento de Sistemas',
@@ -161,7 +152,7 @@ async function main() {
         },
     });
 
-    const membroEquipe14 = await prisma.equipe.create({
+    const membroEquipe13 = await prisma.equipe.create({
         data: {
             nome: 'Ana Clara',
             objetivo:

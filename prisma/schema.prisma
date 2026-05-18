@@ -103,11 +103,23 @@ model Simulado {
 }
 
 // Dicas, Redação e Curiosidades
+
+enum Categoria {
+    Dicas
+    Redacao
+    Curiosidades
+}
+enum Categoria_en {
+    Tips
+    Writing
+    Curiosities
+}
+
 model Curiosidade {
     id           Int    @id @default(autoincrement())
     livro_id     Int
-    categoria_pt String
-    categoria_en String
+    categoria_pt Categoria
+    categoria_en Categoria_en
     titulo_pt    String
     titulo_en    String
     conteudo_pt  String

@@ -7,31 +7,52 @@ export const criar = async (req, res) => {
     }
 
     const {
-      livro_id,
-      pergunta_pt,
-      pergunta_en,
-      opcao_a,
-      opcao_b,
-      opcao_c,
-      opcao_d,
-      resposta_correta,
-      explicacao_pt,
-      explicacao_en,
+        livro_id,
+        pergunta_pt,
+        pergunta_en,
+        opcao_a,
+        opcao_b,
+        opcao_c,
+        opcao_d,
+        opcao_a_en,
+        opcao_b_en,
+        opcao_c_en,
+        opcao_d_en,
+        resposta_correta,
+        explicacao_pt,
+        explicacao_en,
     } = req.body;
+
+      const camposObrigatorios = { livro_id, pergunta_pt, resposta_correta, opcao_a, opcao_b };
+    const faltando = Object.keys(camposObrigatorios).filter((campo) => !camposObrigatorios[campo]);
+
+    if (faltando.length > 0) {
+        return res.status(400).json({
+            error: 'Faltam dados obrigatórios para o simulado!',
+            campos_faltando: faltando,
+        });
+      }
 
     if (
       !livro_id ||
       !pergunta_pt ||
       !resposta_correta ||
       !opcao_a ||
-      !opcao_b
+      !opcao_b ||
+      !opcao_c ||
+      !opcao_d ||
+      !opcao_a_en ||
+      !opcao_b_en ||
+      !opcao_c_en ||
+      !opcao_d_en
     ) {
       return res
         .status(400)
         .json({ error: "Faltam dados obrigatórios para o simulado!" });
     }
 
-    const respostaFormatada = resposta_correta.toUpperCase();
+      const respostaFormatada = resposta_correta.toUpperCase();
+
     const opcoesValidas = ["A", "B", "C", "D"];
     if (!opcoesValidas.includes(respostaFormatada)) {
       return res
@@ -50,16 +71,20 @@ export const criar = async (req, res) => {
     }
 
     const simulado = new SimuladoModel({
-      livro_id,
-      pergunta_pt,
-      pergunta_en,
-      opcao_a,
-      opcao_b,
-      opcao_c,
-      opcao_d,
-      resposta_correta: respostaFormatada,
-      explicacao_pt,
-      explicacao_en,
+        livro_id,
+        pergunta_pt,
+        pergunta_en,
+        opcao_a,
+        opcao_b,
+        opcao_c,
+        opcao_d,
+        opcao_a_en,
+        opcao_b_en,
+        opcao_c_en,
+        opcao_d_en,
+        resposta_correta: respostaFormatada,
+        explicacao_pt,
+        explicacao_en,
     });
 
     const data = await simulado.criar();
@@ -143,6 +168,10 @@ export const atualizar = async (req, res) => {
     if (req.body.opcao_b !== undefined) simulado.opcao_b = req.body.opcao_b;
     if (req.body.opcao_c !== undefined) simulado.opcao_c = req.body.opcao_c;
     if (req.body.opcao_d !== undefined) simulado.opcao_d = req.body.opcao_d;
+    if (req.body.opcao_a_en !== undefined) simulado.opcao_a_en = req.body.opcao_a_en;
+    if (req.body.opcao_b_en !== undefined) simulado.opcao_b_en = req.body.opcao_b_en;
+    if (req.body.opcao_c_en !== undefined) simulado.opcao_c_en = req.body.opcao_c_en;
+    if (req.body.opcao_d_en !== undefined) simulado.opcao_d_en = req.body.opcao_d_en;
     if (req.body.explicacao_pt !== undefined)
       simulado.explicacao_pt = req.body.explicacao_pt;
     if (req.body.explicacao_en !== undefined)

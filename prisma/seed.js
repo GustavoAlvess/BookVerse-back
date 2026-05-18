@@ -39,19 +39,134 @@ async function main() {
     console.log('Iniciando seed da equipe...');
     const membroEquipe1 = await prisma.equipe.create({
         data: {
-            nome: 'Breno',
-            objetivo: 'Desenvolvimento da plataforma, banco de dados e integração da API.',
-            curso: 'Ciência da Computação',
-            fotoURL: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
+            nome: 'Breno Belmonte',
+            objetivo:
+                'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+            curso: 'Eletroeletrônica',
+            fotoURL: '',
         },
     });
 
     const membroEquipe2 = await prisma.equipe.create({
         data: {
+            nome: 'Felipe Campos',
+            objetivo: 'Desenvolvedor back end, api, banco de dados e integração.',
+            curso: 'Desenvolvimento de Sistemas',
+            fotoURL: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+        },
+    });
+
+    const membroEquipe3 = await prisma.equipe.create({
+        data: {
+            nome: 'Rafael Fahl',
+            objetivo:
+                'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+            curso: 'Fabricação Mecânica',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe4 = await prisma.equipe.create({
+        data: {
+            nome: 'Melissa Freitas',
+            objetivo: 'Desenvolvedora front-end.',
+            curso: 'Desenvolvimento de Sistemas',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe5 = await prisma.equipe.create({
+        data: {
+            nome: 'Felipe Gabriel',
+            objetivo:
+                'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+            curso: 'Eletroeletrônica',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe6 = await prisma.equipe.create({
+        data: {
+            nome: 'Gustavo Alves',
+            objetivo: 'Desenvolvedor back end, api, banco de dados e integração.',
+            curso: 'Desenvolvimento de Sistemas',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe7 = await prisma.equipe.create({
+        data: {
+            nome: 'Victor Barbosa',
+            objetivo:
+                'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+            curso: 'Fabricação Mecânica',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe8 = await prisma.equipe.create({
+        data: {
+            nome: 'Luana Folegatti',
+            objetivo: 'Desenvolvedora front-end.',
+            curso: 'Desenvolvimento de Sistemas',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe9 = await prisma.equipe.create({
+        data: {
+            nome: 'Heloísa Stefanini',
+            objetivo:
+                'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+            curso: 'Eletroeletrônica',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe10 = await prisma.equipe.create({
+        data: {
+            nome: 'Isabela Duetes',
+            objetivo: 'Desenvolvedora front-end.',
+            curso: 'Desenvolvimento de Sistemas',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe11 = await prisma.equipe.create({
+        data: {
+            nome: 'Maria Luiza',
+            objetivo:
+                'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+            curso: 'Fabricação Mecânica',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe12 = await prisma.equipe.create({
+        data: {
             nome: 'Felipe',
             objetivo: 'Elaboração das questões, resumos e curiosidades literárias.',
             curso: 'Letras - Português/Inglês',
             fotoURL: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+        },
+    });
+
+    const membroEquipe13 = await prisma.equipe.create({
+        data: {
+            nome: 'Letícia Maria',
+            objetivo: 'Desenvolvedora front-end.',
+            curso: 'Desenvolvimento de Sistemas',
+            fotoURL: '',
+        },
+    });
+
+    const membroEquipe14 = await prisma.equipe.create({
+        data: {
+            nome: 'Ana Clara',
+            objetivo:
+                'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+            curso: 'Fabricação Mecânica',
+            fotoURL: '',
         },
     });
 

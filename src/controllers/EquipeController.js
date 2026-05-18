@@ -90,12 +90,11 @@ export const atualizar = async (req, res) => {
         }
 
         const membro = await EquipeModel.buscarPorId(parseInt(id));
-        membro.nome = nome;
 
         if (!membro) {
             return res.status(404).json({ error: 'Membro não encontrado para atualizar.' });
         }
-        if (nome !== undefined && nome !== membro.nome) {
+        if (membro.nome !== undefined && membro.nome !== membro.nome) {
 
             const duplicado = await EquipeModel.buscarTodos({ nome });
 

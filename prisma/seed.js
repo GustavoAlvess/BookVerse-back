@@ -3,7 +3,7 @@ import 'dotenv/config';
 import pkg from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 
-const { PrismaClient, Categoria, Categoria_en } = pkg;
+const { PrismaClient } = pkg;
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
@@ -37,9 +37,10 @@ async function main() {
     });
 
     console.log('Iniciando seed da equipe...');
+    // <-- Bloco adicionado para popular a tabela Equipe
     const membroEquipe1 = await prisma.equipe.create({
         data: {
-            nome: 'Breno',
+            nome: 'Desenvolvedor(a) Fullstack',
             objetivo: 'Desenvolvimento da plataforma, banco de dados e integração da API.',
             curso: 'Ciência da Computação',
             fotoURL: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
@@ -48,7 +49,7 @@ async function main() {
 
     const membroEquipe2 = await prisma.equipe.create({
         data: {
-            nome: 'Felipe',
+            nome: 'Curador(a) de Conteúdo',
             objetivo: 'Elaboração das questões, resumos e curiosidades literárias.',
             curso: 'Letras - Português/Inglês',
             fotoURL: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
@@ -287,11 +288,10 @@ async function main() {
 
     console.log('✅ Seed finalizado com sucesso!');
     console.log(`Usuários: ${user1.email}, ${user2.email}`);
-    console.log(`Membros da equipe: 2`);
-    console.log(`Livro: ${livro.titulo}`);
-    console.log(`Personagens: 2`);
-    console.log(`Curiosidades: 2`);
-    console.log(`Questões: 2`);
+    console.log(`Membros da equipe criados: 2`);
+    console.log(`Livro: ${livro.titulo} (ID: ${livro.id})`);
+    console.log(`Curiosidades criadas: 2`);
+    console.log(`Questões criadas para este livro: 2`);
 }
 
 main()

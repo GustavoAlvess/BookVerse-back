@@ -10,10 +10,6 @@ export default class SimuladoModel {
     opcao_b,
     opcao_c,
     opcao_d,
-    opcao_a_en,
-    opcao_b_en,
-    opcao_c_en,
-    opcao_d_en,
     resposta_correta,
     explicacao_pt = null,
     explicacao_en = null,
@@ -26,10 +22,6 @@ export default class SimuladoModel {
     this.opcao_b = opcao_b;
     this.opcao_c = opcao_c;
     this.opcao_d = opcao_d;
-    this.opcao_a_en = opcao_a_en;
-    this.opcao_b_en = opcao_b_en;
-    this.opcao_c_en = opcao_c_en;
-    this.opcao_d_en = opcao_d_en;
     this.resposta_correta = resposta_correta?.toUpperCase();
     this.explicacao_pt = explicacao_pt;
     this.explicacao_en = explicacao_en;
@@ -45,10 +37,6 @@ export default class SimuladoModel {
         opcao_b: this.opcao_b,
         opcao_c: this.opcao_c,
         opcao_d: this.opcao_d,
-        opcao_a_en: this.opcao_a_en,
-        opcao_b_en: this.opcao_b_en,
-        opcao_c_en: this.opcao_c_en,
-        opcao_d_en: this.opcao_d_en,
         resposta_correta: this.resposta_correta,
         explicacao_pt: this.explicacao_pt,
         explicacao_en: this.explicacao_en,
@@ -72,22 +60,18 @@ export default class SimuladoModel {
 
   async atualizar() {
     return prisma.simulado.update({
-        where: { id: parseInt(this.id) },
-        data: {
-            pergunta_pt: this.pergunta_pt,
-            pergunta_en: this.pergunta_en,
-            opcao_a: this.opcao_a,
-            opcao_b: this.opcao_b,
-            opcao_c: this.opcao_c,
-            opcao_d: this.opcao_d,
-            opcao_a_en: this.opcao_a_en,
-            opcao_b_en: this.opcao_b_en,
-            opcao_c_en: this.opcao_c_en,
-            opcao_d_en: this.opcao_d_en,
-            resposta_correta: this.resposta_correta,
-            explicacao_pt: this.explicacao_pt,
-            explicacao_en: this.explicacao_en,
-        },
+      where: { id: parseInt(this.id) },
+      data: {
+        pergunta_pt: this.pergunta_pt,
+        pergunta_en: this.pergunta_en,
+        opcao_a: this.opcao_a,
+        opcao_b: this.opcao_b,
+        opcao_c: this.opcao_c,
+        opcao_d: this.opcao_d,
+        resposta_correta: this.resposta_correta,
+        explicacao_pt: this.explicacao_pt,
+        explicacao_en: this.explicacao_en,
+      },
     });
   }
 

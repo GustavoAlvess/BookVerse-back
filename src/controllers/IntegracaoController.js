@@ -136,7 +136,7 @@ export const obterBibliotecaCompleta = async (req, res) => {
 };
 
 
-export const buscarPorIdOriginal = async (req, res) => {
+export const buscarPorId = async (req, res) => {
     try {
         const { id } = req.params;
 

@@ -884,6 +884,25 @@ console.log('Iniciando seed da equipe...');
             explicacao_en: 'Verisimilitude guarantees that the social critique resonates with the reader by exposing believable human pain.',
         },
     });
+
+    await prisma.simulado.create({
+        data: {
+            livro_id: livro.id,
+            pergunta_pt: '25. Por que a verossimilhança é um elemento central de sustentação e impacto na leitura de Vidas Secas?',
+            pergunta_en: '25. Why is verisimilitude a core element of support and impact in the reading of Vidas Secas?',
+            opcao_a: 'Porque insere elementos fantásticos e mágicos impossíveis de ocorrer no mundo real.',
+            opcao_b: 'Porque os problemas, reações e ambientes exibidos reproduzem com precisão convincente a realidade real do sertão.',
+            opcao_c: 'Porque foca exclusivamente em finais felizes e soluções milagrosas.',
+            opcao_d: 'Porque reconta fatos históricos copiados de enciclopédias oficiais verbatim.',
+            opcao_a_en: 'Because it inserts fantastic and magical elements impossible to occur in the real world.',
+            opcao_b_en: 'Because the problems, reactions, and environments shown accurately and convincingly mirror the true reality of the hinterland.',
+            opcao_c_en: 'Because it focuses exclusively on happy endings and miraculous solutions.',
+            opcao_d_en: 'Because it recounts historical facts copied from official encyclopedias verbatim.',
+            resposta_correta: 'b',
+            explicacao_pt: 'A verossimilhança garante que a denúncia social ecoe fortemente no leitor ao expor dores humanas plausíveis.',
+            explicacao_en: 'Verisimilitude guarantees that the social critique resonates with the reader by exposing believable human pain.',
+        },
+    });
 }
 
 console.log('✅ Seed finalizado com sucesso!');

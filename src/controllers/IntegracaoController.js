@@ -131,3 +131,104 @@ export const obterBibliotecaCompleta = async (req, res) => {
         return res.status(500).json({ erro: 'Erro crítico no servidor.', detalhe: error.message });
     }
 };
+
+
+export const buscarPorId = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (isNaN(id)) {
+            return res.status(400).json({ error: 'O ID enviado não é um número válido.' });
+        }
+
+        const idInt = parseInt(id);
+
+        const endpointsLivros = [
+            {
+                nomeLivro: 'Capitães da Areia',
+                urlCompleta: 'https://readflow-m8o6.onrender.com/api/livros',
+                apiKey: process.env.KEY_LIVRO_CAPITAES_DA_AREIA,
+                tipoAuth: 'x-api-key',
+            },
+            {
+                nomeLivro: 'O Guarani',
+                urlCompleta: 'https://bookpedia-backend-4ab3.onrender.com/livros',
+                apiKey: process.env.KEY_LIVRO_O_GUARANI,
+                tipoAuth: 'x-api-key',
+            },
+            {
+                nomeLivro: 'Quartos de despejo',
+                urlCompleta: 'https://backend-projeto-integrador-rana.onrender.com/api/livro',
+                apiKey: process.env.KEY_LIVRO_QUARTOS_DESPEJO,
+                tipoAuth: 'x-api-key',
+            },
+            {
+                nomeLivro: 'Memórias Póstumas de Brás Cubas',
+                urlCompleta: 'https://projeto-clubyx.onrender.com/livros',
+                apiKey: process.env.KEY_LIVRO_MEMORIAS,
+                tipoAuth: 'x-api-key',
+            },
+        ];
+
+    
+        const indexLivro = idInt - 1;
+        const livroConfig = endpointsLivros[indexLivro];
+
+        if (!livroConfig) {
+            return res.status(404).json({ error: 'Livro não encontrado.' });
+        }
+
+        if (!livroConfig.urlCompleta || !livroConfig.apiKey) {
+            return res.status(500).json({ error: 'Configuração de API ausente para este livro.' });
+        }
+
+        console.log(`[Busca por ID] Disparando Fetch para: ${livroConfig.urlCompleta}`);
+        const resposta = await fetch(livroConfig.urlCompleta, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': livroConfig.apiKey,
+            },
+        });
+
+        if (!resposta.ok) {
+            return res.status(resposta.status).json({
+                error: `Erro na API parceira: HTTP ${resposta.status}`,
+            });
+        }
+
+        const dadosBrutos = await resposta.json();
+        const listaDeLivros = Array.isArray(dadosBrutos) ? dadosBrutos : [];
+
+        const dadosFormatados = listaDeLivros.map((item) => ({
+            titulo:
+                item.titulo ||
+                item.title ||
+                item.tituloDoLivro ||
+                item.tituloPT ||
+                item.nome ||
+                'Título não informado',
+            autor: item.autor || item.author || item.autores || 'Autor não informado',
+            capa_url: item.capa || item.image || item.capaURL || item.foto || item.capa_url || null,
+            ano: item.ano || item.year || item.anoPublicacao || item.publicacao || 'N/A',
+            genero_pt: item.genero_pt || item.genero || item.generoPT || 'Gênero não informado',
+            genero_en: item.genero_en || item.genre || item.generoEN || 'Genre not informed',
+            enredo_pt: item.enredo_pt || item.resumo || 'Enredo não informado',
+            enredo_en:
+                item.enredo_en || item.description || item.resumoEn || 'Description not informed',
+        }));
+
+        const resultadoFinal = {
+            id: idInt,
+            livro: livroConfig.nomeLivro,
+            statusApi: 'Online',
+            conteudo: dadosFormatados,
+        };
+
+
+        return res.status(200).json(resultadoFinal);
+    } catch (error) {
+        console.error('Erro ao buscar livro por ID:', error);
+        return res.status(500).json({ error: 'Erro ao buscar livro por ID.' });
+    }
+};

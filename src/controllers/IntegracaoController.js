@@ -140,7 +140,6 @@ export const buscarPorIdOriginal = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // 1. Validação padrão se o ID recebido é um número válido
         if (isNaN(id)) {
             return res.status(400).json({ error: 'O ID enviado não é um número válido.' });
         }
@@ -241,11 +240,11 @@ export const buscarPorIdOriginal = async (req, res) => {
                         itemEncontrado.generoEN ||
                         'Genre not informed',
                     enredo_pt:
-                        itemEncontrado.enredo_pt || itemEncontrado.resumo || 'Enredo não informado',
+                        itemEncontrado.enredo_pt || itemEncontrado.resumo || itemEncontrado.sinopse || 'Enredo não informado',
                     enredo_en:
                         itemEncontrado.enredo_en ||
                         itemEncontrado.description ||
-                        itemEncontrado.resumoEn ||
+                        itemEncontrado.resumoEn || itemEncontrado.sinopseEN ||
                         'Description not informed',
                 };
             } catch (error) {

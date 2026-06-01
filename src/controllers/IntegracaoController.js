@@ -74,8 +74,6 @@ export const obterBibliotecaCompleta = async (req, res) => {
 
                 const dadosFormatados = listaDeLivros.map((item) => ({
 
-                    id: ++contadorGlobal,
-
                     titulo:
                         item.titulo ||
                         item.title ||
@@ -103,6 +101,8 @@ export const obterBibliotecaCompleta = async (req, res) => {
                 }));
 
                 return {
+                    //adicionando o id p cada livro
+                    id: ++contadorGlobal,
                     livro: livro.nomeLivro,
                     statusApi: 'Online',
                     conteudo: dadosFormatados,

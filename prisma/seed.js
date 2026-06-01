@@ -32,45 +32,130 @@ async function main() {
         },
     });
 
-    await prisma.equipe.create({
-        data: { nome: 'Breno Belmonte', objetivo: 'Responsabilidade sobre dados do livro, extrair informações para conter no site.', curso: 'Eletroeletrônica', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Felipe Campos', objetivo: 'Desenvolvedor back end, api, banco de dados e integração.', curso: 'Desenvolvimento de Sistemas', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Rafael Fahl', objetivo: 'Responsabilidade sobre dados do livro, extrair informações para conter no site.', curso: 'Fabricação Mecânica', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Melissa Freitas', objetivo: 'Desenvolvedora front-end.', curso: 'Desenvolvimento de Sistemas', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Felipe Gabriel', objetivo: 'Responsabilidade sobre dados do livro, extrair informações para conter no site.', curso: 'Eletroeletrônica', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Gustavo Alves', objetivo: 'Desenvolvedor back end, api, banco de dados e integração.', curso: 'Desenvolvimento de Sistemas', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Victor Barbosa', objetivo: 'Responsabilidade sobre dados do livro, extrair informações para conter no site.', curso: 'Fabricação Mecânica', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Luana Folegatti', objetivo: 'Desenvolvedora front-end.', curso: 'Desenvolvimento de Sistemas', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Heloísa Stefanini', objetivo: 'Responsabilidade sobre dados do livro, extrair informações para conter no site.', curso: 'Eletroeletrônica', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Isabela Duetes', objetivo: 'Desenvolvedora front-end.', curso: 'Desenvolvimento de Sistemas', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Maria Luiza', objetivo: 'Responsabilidade sobre dados do livro, extrair informações para conter no site.', curso: 'Fabricação Mecânica', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Letícia Maria', objetivo: 'Desenvolvedora front-end.', curso: 'Desenvolvimento de Sistemas', fotoURL: '' },
-    });
-    await prisma.equipe.create({
-        data: { nome: 'Ana Clara', objetivo: 'Responsabilidade sobre dados do livro, extrair informações para conter no site.', curso: 'Fabricação Mecânica', fotoURL: '' },
-    });
+console.log('Iniciando seed da equipe...');
+   const membroEquipe1 = await prisma.equipe.create({
+       data: {
+           nome: 'Breno Belmonte',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Eletroeletrônica',
+           fotoURL: 'https://i.ibb.co/prJ4ZYD1/breno.png',
+       },
+   });
+
+   const membroEquipe2 = await prisma.equipe.create({
+       data: {
+           nome: 'Felipe Campos',
+           objetivo: 'Desenvolvedor back end, api, banco de dados e integração.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/q3szrgXf/campos.png',
+       },
+   });
+
+   const membroEquipe3 = await prisma.equipe.create({
+       data: {
+           nome: 'Rafael Fahl',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Fabricação Mecânica',
+           fotoURL: 'https://i.ibb.co/kV9gkmP8/fahl.png',
+       },
+   });
+
+   const membroEquipe4 = await prisma.equipe.create({
+       data: {
+           nome: 'Melissa Freitas',
+           objetivo: 'Desenvolvedora front-end.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/Q7SsfWWN/melissa.png',
+       },
+   });
+
+   const membroEquipe5 = await prisma.equipe.create({
+       data: {
+           nome: 'Felipe Jardim',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Eletroeletrônica',
+           fotoURL: 'https://i.ibb.co/G3fkn9Hm/jardim.png',
+       },
+   });
+
+   const membroEquipe6 = await prisma.equipe.create({
+       data: {
+           nome: 'Gustavo Alves',
+           objetivo: 'Desenvolvedor back end, api, banco de dados e integração.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/ynJJ1PKJ/alves.png',
+       },
+   });
+
+   const membroEquipe7 = await prisma.equipe.create({
+       data: {
+           nome: 'Victor Barbosa',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Fabricação Mecânica',
+           fotoURL: 'https://i.ibb.co/jkDr1P8F/victor.png',
+       },
+   });
+
+   const membroEquipe8 = await prisma.equipe.create({
+       data: {
+           nome: 'Luana Follegati',
+           objetivo: 'Desenvolvedora front-end.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/YVCqk9H/luana.png',
+       },
+   });
+
+   const membroEquipe9 = await prisma.equipe.create({
+       data: {
+           nome: 'Heloísa Stefanini',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Eletroeletrônica',
+           fotoURL: 'https://i.ibb.co/GhDz8nk/heloisa.png',
+       },
+   });
+
+   const membroEquipe10 = await prisma.equipe.create({
+       data: {
+           nome: 'Isabela Duetes',
+           objetivo: 'Desenvolvedora front-end.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/5g4G2t0b/duetes.png',
+       },
+   });
+
+   const membroEquipe11 = await prisma.equipe.create({
+       data: {
+           nome: 'Maria Luiza',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Fabricação Mecânica',
+           fotoURL: 'https://i.ibb.co/B2h7DvNY/maria.png',
+       },
+   });
+
+   const membroEquipe12 = await prisma.equipe.create({
+       data: {
+           nome: 'Letícia Maria',
+           objetivo: 'Desenvolvedora front-end.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/yc9WSScY/leticia.png',
+       },
+   });
+
+   const membroEquipe13 = await prisma.equipe.create({
+       data: {
+           nome: 'Ana Clara',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Fabricação Mecânica',
+           fotoURL: 'https://i.ibb.co/WW3hW1Sz/ana.png',
+       },
+   });
 
     const livro = await prisma.livro.create({
         data: {

@@ -244,7 +244,7 @@ export const buscarPorIdOriginal = async (req, res) => {
                     enredo_en:
                         itemEncontrado.enredo_en ||
                         itemEncontrado.description ||
-                        itemEncontrado.resumoEn ||
+                        itemEncontrado.resumoEn || itemEncontrado.sinopseEN ||
                         'Description not informed',
                 };
             } catch (error) {

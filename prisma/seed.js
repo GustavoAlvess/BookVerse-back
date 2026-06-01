@@ -249,7 +249,7 @@ console.log('Iniciando seed da equipe...');
             descricao_pt: 'Por votar e ser alfabetizado, é o modelo de erudição e de conhecimento dos demais personagens.',
             descricao_en: 'Since he can vote and read, he represents the ultimate model of erudition and knowledge to the other characters.',
             papel: 'Coadjuvante',
-            imagem_url: '',
+            imagem_url: 'https://i.ibb.co/zhzycptS/tomas.png',
         },
     });
 
@@ -257,10 +257,12 @@ console.log('Iniciando seed da equipe...');
         data: {
             livro_id: livro.id,
             nome: 'O Soldado Amarelo',
-            descricao_pt: 'Antagonista mais direto de Fabiano, representa, assim como o fiscal da prefeitura e o dono da fazenda, a opressão do poder institucional.',
-            descricao_en: 'Fabiano’s direct antagonist. He represents the abusive and institutional oppression of authorities over poor citizens.',
+            descricao_pt:
+                'Antagonista mais direto de Fabiano, representa, assim como o fiscal da prefeitura e o dono da fazenda, a opressão do poder institucional.',
+            descricao_en:
+                'Fabiano’s direct antagonist. He represents the abusive and institutional oppression of authorities over poor citizens.',
             papel: 'Antagonista',
-            imagem_url: '',
+            imagem_url: 'https://i.ibb.co/cXt7wM30/soldado.png',
         },
     });
 
@@ -437,14 +439,14 @@ console.log('Iniciando seed da equipe...');
             livro_id: livro.id,
             pergunta_pt: '1. No livro Vidas Secas, a linguagem seca e econômica utilizada por Graciliano Ramos contribui principalmente para:',
             pergunta_en: '1. In the book, Vidas Secas, the language used by Graciliano Ramos contributes mainly for:',
-            opcao_a: 'romantizar a vida no sertão nordestino.',
-            opcao_b: 'enfatizar a dureza da existência das personagens.',
-            opcao_c: 'valorizar o humor presente na narrativa.',
-            opcao_d: 'destacar a superioridade intelectual dos retirantes.',
-            opcao_a_en: 'make life in the Northeast countryside look beautiful and perfect.',
-            opcao_b_en: 'show how hard the characters’ lives are.',
-            opcao_c_en: 'show the humor in the story.',
-            opcao_d_en: 'show that the migrants are very intelligent.',
+            opcao_a: 'Romantizar a vida no sertão nordestino.',
+            opcao_b: 'Enfatizar a dureza da existência das personagens.',
+            opcao_c: 'Valorizar o humor presente na narrativa.',
+            opcao_d: 'Destacar a superioridade intelectual dos retirantes.',
+            opcao_a_en: 'Make life in the Northeast countryside look beautiful and perfect.',
+            opcao_b_en: 'Show how hard the characters’ lives are.',
+            opcao_c_en: 'Show the humor in the story.',
+            opcao_d_en: 'Show that the migrants are very intelligent.',
             resposta_correta: 'b',
             explicacao_pt: 'A linguagem direta, curta e “seca” combina com a miséria, a fome e o sofrimento vividos pelas personagens retratados no livro.',
             explicacao_en: 'The direct language matches the misery, hunger, and suffering of the characters in the book.',

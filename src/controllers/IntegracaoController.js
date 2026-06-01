@@ -1,6 +1,5 @@
 export const obterBibliotecaCompleta = async (req, res) => {
     try {
-
         const endpointsLivros = [
             {
                 nomeLivro: 'Capitães da Areia',
@@ -30,18 +29,18 @@ export const obterBibliotecaCompleta = async (req, res) => {
 
         console.log(`Total de livros cadastrados no array: ${endpointsLivros.length}`);
 
-        let contadorGlobal = 0;
-
         const promessas = endpointsLivros.map(async (livro, index) => {
             console.log(`[Índice ${index}] Iniciando processo para: ${livro.nomeLivro}`);
 
             try {
                 if (!livro.urlCompleta || !livro.apiKey) {
-                    console.log(`[Índice ${index}] Erro: URL ou Key faltando para ${livro.nomeLivro}`);
+                    console.log(
+                        `[Índice ${index}] Erro: URL ou Key faltando para ${livro.nomeLivro}`,
+                    );
                     return {
                         livro: livro.nomeLivro,
                         statusApi: 'Configuração Ausente',
-                        conteudo: []
+                        conteudo: [],
                     };
                 }
 
@@ -55,25 +54,26 @@ export const obterBibliotecaCompleta = async (req, res) => {
                     },
                 });
 
-                console.log(`[Índice ${index}] Resposta recebida de ${livro.nomeLivro}. Status: ${resposta.status}`);
+                console.log(
+                    `[Índice ${index}] Resposta recebida de ${livro.nomeLivro}. Status: ${resposta.status}`,
+                );
 
                 if (!resposta.ok) {
                     return {
                         livro: livro.nomeLivro,
                         statusApi: `Erro HTTP ${resposta.status}`,
-                        conteudo: []
+                        conteudo: [],
                     };
                 }
 
                 const dadosBrutos = await resposta.json();
-                console.log(`[Índice ${index}] JSON convertido com sucesso para ${livro.nomeLivro}`);
-
+                console.log(
+                    `[Índice ${index}] JSON convertido com sucesso para ${livro.nomeLivro}`,
+                );
 
                 const listaDeLivros = Array.isArray(dadosBrutos) ? dadosBrutos : [];
 
-
                 const dadosFormatados = listaDeLivros.map((item) => ({
-
                     titulo:
                         item.titulo ||
                         item.title ||
@@ -81,12 +81,14 @@ export const obterBibliotecaCompleta = async (req, res) => {
                         item.tituloPT ||
                         item.nome ||
                         'Título não informado',
-                    autor:
-                        item.autor ||
-                        item.author ||
-                        item.autores ||
-                        'Autor não informado',
-                    capa_url: item.capa || item.image || item.capaURL || item.foto || item.capa_url|| null,
+                    autor: item.autor || item.author || item.autores || 'Autor não informado',
+                    capa_url:
+                        item.capa ||
+                        item.image ||
+                        item.capaURL ||
+                        item.foto ||
+                        item.capa_url ||
+                        null,
                     ano: item.ano || item.year || item.anoPublicacao || item.publicacao || 'N/A',
                     genero_pt:
                         item.genero_pt || item.genero || item.generoPT || 'Gênero não informado',
@@ -102,14 +104,16 @@ export const obterBibliotecaCompleta = async (req, res) => {
 
                 return {
                     //adicionando o id p cada livro
-                    id: ++contadorGlobal,
+                    id: index + 1,
                     livro: livro.nomeLivro,
                     statusApi: 'Online',
                     conteudo: dadosFormatados,
                 };
-
             } catch (erroLivro) {
-                console.error(`🚨 [Erro interno no mapa do livro ${livro.nomeLivro}]:`, erroLivro.message);
+                console.error(
+                    `🚨 [Erro interno no mapa do livro ${livro.nomeLivro}]:`,
+                    erroLivro.message,
+                );
                 return {
                     livro: livro.nomeLivro,
                     statusApi: 'Erro Interno na Requisição',
@@ -122,7 +126,6 @@ export const obterBibliotecaCompleta = async (req, res) => {
         console.log('--- PROCESSO CONCLUÍDO COM SUCESSO ---');
 
         return res.status(200).json(bibliotecaCompleta);
-
     } catch (error) {
         console.error('💥 ERRO CRÍTICO NO CATCH PRINCIPAL:', error.message);
         return res.status(500).json({ erro: 'Erro crítico no servidor.', detalhe: error.message });

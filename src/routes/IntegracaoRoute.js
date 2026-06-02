@@ -3,7 +3,6 @@ import { buscarPorId, obterBibliotecaCompleta } from '../controllers/IntegracaoC
 
 const router = Router();
 
-// Rota de teste
 router.get('/', obterBibliotecaCompleta);
 router.get('/:id', buscarPorId);
 

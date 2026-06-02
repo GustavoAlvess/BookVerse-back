@@ -1,7 +1,7 @@
 import prisma from "../lib/services/prismaClient.js";
 
 export default class PersonagemModel {
-    constructor({
+  constructor({
     id = null,
     livro_id,
     nome,

@@ -33,6 +33,8 @@ async function main() {
     });
 
 console.log('Iniciando seed da equipe...');
+
+
    const membroEquipe1 = await prisma.equipe.create({
        data: {
            nome: 'Breno Belmonte',
@@ -43,6 +45,17 @@ console.log('Iniciando seed da equipe...');
        },
    });
 
+
+   const membroEquipe4 = await prisma.equipe.create({
+       data: {
+           nome: 'Melissa Freitas',
+           objetivo: 'Desenvolvedora front-end.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/Q7SsfWWN/melissa.png',
+       },
+   });
+
+
    const membroEquipe2 = await prisma.equipe.create({
        data: {
            nome: 'Felipe Campos',
@@ -51,6 +64,17 @@ console.log('Iniciando seed da equipe...');
            fotoURL: 'https://i.ibb.co/q3szrgXf/campos.png',
        },
    });
+
+
+   const membroEquipe8 = await prisma.equipe.create({
+       data: {
+           nome: 'Luana Follegati',
+           objetivo: 'Desenvolvedora front-end.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/YVCqk9H/luana.png',
+       },
+   });
+
 
    const membroEquipe3 = await prisma.equipe.create({
        data: {
@@ -62,52 +86,6 @@ console.log('Iniciando seed da equipe...');
        },
    });
 
-   const membroEquipe4 = await prisma.equipe.create({
-       data: {
-           nome: 'Melissa Freitas',
-           objetivo: 'Desenvolvedora front-end.',
-           curso: 'Desenvolvimento de Sistemas',
-           fotoURL: 'https://i.ibb.co/Q7SsfWWN/melissa.png',
-       },
-   });
-
-   const membroEquipe5 = await prisma.equipe.create({
-       data: {
-           nome: 'Felipe Jardim',
-           objetivo:
-               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
-           curso: 'Eletroeletrônica',
-           fotoURL: 'https://i.ibb.co/G3fkn9Hm/jardim.png',
-       },
-   });
-
-   const membroEquipe6 = await prisma.equipe.create({
-       data: {
-           nome: 'Gustavo Alves',
-           objetivo: 'Desenvolvedor back end, api, banco de dados e integração.',
-           curso: 'Desenvolvimento de Sistemas',
-           fotoURL: 'https://i.ibb.co/ynJJ1PKJ/alves.png',
-       },
-   });
-
-   const membroEquipe7 = await prisma.equipe.create({
-       data: {
-           nome: 'Victor Barbosa',
-           objetivo:
-               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
-           curso: 'Fabricação Mecânica',
-           fotoURL: 'https://i.ibb.co/jkDr1P8F/victor.png',
-       },
-   });
-
-   const membroEquipe8 = await prisma.equipe.create({
-       data: {
-           nome: 'Luana Follegati',
-           objetivo: 'Desenvolvedora front-end.',
-           curso: 'Desenvolvimento de Sistemas',
-           fotoURL: 'https://i.ibb.co/YVCqk9H/luana.png',
-       },
-   });
 
    const membroEquipe9 = await prisma.equipe.create({
        data: {
@@ -119,6 +97,18 @@ console.log('Iniciando seed da equipe...');
        },
    });
 
+
+   const membroEquipe5 = await prisma.equipe.create({
+       data: {
+           nome: 'Felipe Jardim',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Eletroeletrônica',
+           fotoURL: 'https://i.ibb.co/G3fkn9Hm/jardim.png',
+       },
+   });
+
+
    const membroEquipe10 = await prisma.equipe.create({
        data: {
            nome: 'Isabela Duetes',
@@ -128,6 +118,17 @@ console.log('Iniciando seed da equipe...');
        },
    });
 
+
+   const membroEquipe6 = await prisma.equipe.create({
+       data: {
+           nome: 'Gustavo Alves',
+           objetivo: 'Desenvolvedor back end, api, banco de dados e integração.',
+           curso: 'Desenvolvimento de Sistemas',
+           fotoURL: 'https://i.ibb.co/ynJJ1PKJ/alves.png',
+       },
+   });
+
+   
    const membroEquipe11 = await prisma.equipe.create({
        data: {
            nome: 'Maria Luiza',
@@ -138,6 +139,18 @@ console.log('Iniciando seed da equipe...');
        },
    });
 
+   
+   const membroEquipe7 = await prisma.equipe.create({
+       data: {
+           nome: 'Victor Barbosa',
+           objetivo:
+               'Responsabilidade sobre dados do livro, extrair informações para conter no site.',
+           curso: 'Fabricação Mecânica',
+           fotoURL: 'https://i.ibb.co/jkDr1P8F/victor.png',
+       },
+   });
+
+   
    const membroEquipe12 = await prisma.equipe.create({
        data: {
            nome: 'Letícia Maria',
@@ -147,6 +160,7 @@ console.log('Iniciando seed da equipe...');
        },
    });
 
+   
    const membroEquipe13 = await prisma.equipe.create({
        data: {
            nome: 'Ana Clara',
@@ -434,7 +448,7 @@ console.log('Iniciando seed da equipe...');
         },
     });
 
-    await prisma.simulado.create({
+   await prisma.simulado.create({
         data: {
             livro_id: livro.id,
             pergunta_pt: '1. No livro Vidas Secas, a linguagem seca e econômica utilizada por Graciliano Ramos contribui principalmente para:',
@@ -457,15 +471,15 @@ console.log('Iniciando seed da equipe...');
             livro_id: livro.id,
             pergunta_pt: '2. Um escritor classificou Vidas secas vista sua composição descontínua, feita de episódios relativamente independentes. Essas características da composição do livro:',
             pergunta_en: '2. A writer classified Vidas Secas by its discontinuous composition, made of relatively independent episodes. These features:',
-            opcao_a: 'Constituem um traço de estilo típico dos romances de Graciliano Ramos e do Regionalismo nordestino.',
-            opcao_b: 'Indicam que ele pertence à fase inicial de Graciliano Ramos, quando este ainda seguia os ditames do primeiro momento do Modernismo.',
-            opcao_c: 'Diminuem o seu alcance expressivo, na medida em que dificultam uma visão adequada da realidade sertaneja.',
-            opcao_d: 'Relacionam-se à visão limitada e fragmentária que as próprias personagens têm do mundo.',
-            opcao_a_en: 'Are typical stylistic choices of Graciliano Ramos and Northeastern Regionalism.',
-            opcao_b_en: 'Indicate that it belongs to Graciliano Ramos initial phase.',
-            opcao_c_en: 'Decrease its expressive power by making the reality harder to see.',
-            opcao_d_en: 'Relate to the limited and fragmented view that characters themselves have of the world.',
-            resposta_correta: 'd',
+            opcao_a: 'Relacionam-se à visão limitada e fragmentária que as próprias personagens têm do mundo.',
+            opcao_b: 'Constituem um traço de estilo típico dos romances de Graciliano Ramos e do Regionalismo nordestino.',
+            opcao_c: 'Indicam que ele pertence à fase inicial de Graciliano Ramos, quando este ainda seguia os ditames do primeiro momento do Modernismo.',
+            opcao_d: 'Diminuem o seu alcance expressivo, na medida em que dificultam uma visão adequada da realidade sertaneja.',
+            opcao_a_en: 'Relate to the limited and fragmented view that characters themselves have of the world.',
+            opcao_b_en: 'Are typical stylistic choices of Graciliano Ramos and Northeastern Regionalism.',
+            opcao_c_en: 'Indicate that it belongs to Graciliano Ramos initial phase.',
+            opcao_d_en: 'Decrease its expressive power by making the reality harder to see.',
+            resposta_correta: 'a',
             explicacao_pt: 'A estrutura fragmentada de Vidas Secas representa a visão limitada das personagens sobre o mundo, já que elas vivem em condições de miséria e dificuldade.',
             explicacao_en: 'The fragmented structure reflects the limited views that characters have due to poverty and lack of resources.',
         },
@@ -476,14 +490,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '3. Sobre o foco narrativo em Vidas Secas, é correto afirmar que:',
             pergunta_en: '3. About the point of view/narrative focus, it is correct confirm that:',
             opcao_a: 'a narrativa é feita exclusivamente em primeira pessoa por Fabiano.',
-            opcao_b: 'o narrador utiliza linguagem objetiva, mas penetra nos pensamentos das personagens.',
-            opcao_c: 'o narrador participa diretamente dos acontecimentos da história.',
+            opcao_b: 'o narrador participa diretamente dos acontecimentos da história.',
+            opcao_c: 'o narrador utiliza linguagem objetiva, mas penetra nos pensamentos das personagens.',
             opcao_d: 'a obra apresenta apenas diálogos, sem interferência narrativa.',
             opcao_a_en: 'the story is told only by Fabiano in first person.',
-            opcao_b_en: 'the narrator uses simple language, but shows the characters’ thoughts.',
-            opcao_c_en: 'the narrator takes part in the story events.',
+            opcao_b_en: 'the narrator takes part in the story events.',
+            opcao_c_en: 'the narrator uses simple language, but shows the characters’ thoughts.',
             opcao_d_en: 'the book has only dialogues, without narration.',
-            resposta_correta: 'b',
+            resposta_correta: 'c',
             explicacao_pt: 'O narrador é objective, mas utiliza discurso indireto livre para mostrar pensamentos das personagens.',
             explicacao_en: 'The narrator is objective, but uses free indirect speech to show the characters’ thoughts.',
         },
@@ -495,13 +509,13 @@ console.log('Iniciando seed da equipe...');
             pergunta_en: '4. The process of zoomorphization suffered by humans in the book manifests through:',
             opcao_a: 'Personagens que conseguem se comunicar fluentemente com os animais da fazenda.',
             opcao_b: 'A transformação física real dos filhos de Fabiano em bichos do mato.',
-            opcao_c: 'A incapacidade verbal e o comportamento puramente instintivo de sobrevivência dos retirantes.',
-            opcao_d: 'Um delírio místico causado pela fome coletiva da família.',
+            opcao_c: 'Um delírio místico causado pela fome coletiva da família.',
+            opcao_d: 'A incapacidade verbal e o comportamento puramente instintivo de sobrevivência dos retirantes.',
             opcao_a_en: 'Characters who can communicate fluently with the farm animals.',
             opcao_b_en: 'The real physical transformation of Fabiano’s sons into wild beasts.',
-            opcao_c_en: 'The verbal inability and purely instinctive survival behavior of the migrants.',
-            opcao_d_en: 'A mystical delirium caused by the collective hunger of the family.',
-            resposta_correta: 'c',
+            opcao_c_en: 'A mystical delirium caused by the collective hunger of the family.',
+            opcao_d_en: 'The verbal inability and purely instinctive survival behavior of the migrants.',
+            resposta_correta: 'd',
             explicacao_pt: 'A zoomorfização rebaixa o ser humano ao nível animal devido às condições brutais de subsistência e falta de linguagem.',
             explicacao_en: 'Zoomorphization lowers humans to an animalistic level due to brutal living conditions and lack of language.',
         },
@@ -511,15 +525,15 @@ console.log('Iniciando seed da equipe...');
             livro_id: livro.id,
             pergunta_pt: '5. O processo inverso, conhecido como antropomorfização ou humanização, ocorre explicitamente com qual personagem?',
             pergunta_en: '5. The inverse process, known as anthropomorphization or humanization, explicitly occurs with which character?',
-            opcao_a: 'Seu Tomás da Bolandeira',
-            opcao_b: 'A cachorra Baleia',
+            opcao_a: 'A cachorra Baleia',
+            opcao_b: 'Seu Tomás da Bolandeira',
             opcao_c: 'O Soldado Amarelo',
             opcao_d: 'O Menino Mais Velho',
-            opcao_a_en: 'Seu Tomás da Bolandeira',
-            opcao_b_en: 'The dog Baleia',
+            opcao_a_en: 'The dog Baleia',
+            opcao_b_en: 'Seu Tomás da Bolandeira',
             opcao_c_en: 'The Yellow Soldier',
             opcao_d_en: 'The Older Boy',
-            resposta_correta: 'b',
+            resposta_correta: 'a',
             explicacao_pt: 'Baleia possui sonhos, julgamentos e sentimentos complexos, muitas vezes parecendo mais humana do que os próprios donos.',
             explicacao_en: 'Baleia has complex dreams, judgments, and feelings, often appearing more human than her owners.',
         },
@@ -530,14 +544,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '6. Qual objeto representa o maior desejo de consumo de Sinhá Vitória e simboliza uma vida digna?',
             pergunta_en: '6. Which object represents Sinhá Vitória’s greatest consumer desire and symbolizes a dignified life?',
             opcao_a: 'Um rádio de pilha moderno',
-            opcao_b: 'Uma cama de lastro igual à de Seu Tomás',
-            opcao_c: 'Um vestido de seda para festas religiosas',
+            opcao_b: 'Um vestido de seda para festas religiosas',
+            opcao_c: 'Uma cama de lastro igual à de Seu Tomás',
             opcao_d: 'Uma espingarda nova para Fabiano',
             opcao_a_en: 'A modern portable radio',
-            opcao_b_en: 'A cord-slatted bed just like Seu Tomás’s',
-            opcao_c_en: 'A silk dress for religious festivals',
+            opcao_b_en: 'A silk dress for religious festivals',
+            opcao_c_en: 'A cord-slatted bed just like Seu Tomás’s',
             opcao_d_en: 'A brand new shotgun for Fabiano',
-            resposta_correta: 'b',
+            resposta_correta: 'c',
             explicacao_pt: 'A cama de lastro de Seu Tomás da Bolandeira representa o ápice de conforto e dignidade na perspectiva humilde de Sinhá Vitória.',
             explicacao_en: 'Seu Tomás’s bed represents the pinnacle of comfort and dignity from Sinhá Vitória’s humble perspective.',
         },
@@ -566,14 +580,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '8. O Soldado Amarelo encarna um antagonismo institucional que atua na obra por meio de:',
             pergunta_en: '8. The Yellow Soldier embodies an institutional antagonism that operates through:',
             opcao_a: 'Ações de caridade e apoio médico às famílias necessitadas da caatinga.',
-            opcao_b: 'Abuso de autoridade, opressão do poder estatal e humilhação do trabalhador rural.',
-            opcao_c: 'Justiça agrária, defendendo Fabiano contra os desmandos do patrão.',
-            opcao_d: 'Incompetência pacífica, sem interferir na rotina da vila.',
+            opcao_b: 'Justiça agrária, defendendo Fabiano contra os desmandos do patrão.',
+            opcao_c: 'Incompetência pacífica, sem interferir na rotina da vila.',
+            opcao_d: 'Abuso de autoridade, opressão do poder estatal e humilhação do trabalhador rural.',
             opcao_a_en: 'Charitable actions and medical support for needy families in the caatinga.',
-            opcao_b_en: 'Abuse of authority, oppression of state power, and humiliation of the rural worker.',
-            opcao_c_en: 'Agrarian justice, defending Fabiano against the boss’s misdeeds.',
-            opcao_d_en: 'Peaceful incompetence, without interfering in the town’s routine.',
-            resposta_correta: 'b',
+            opcao_b_en: 'Agrarian justice, defending Fabiano against the boss’s misdeeds.',
+            opcao_c_en: 'Peaceful incompetence, without interfering in the town’s routine.',
+            opcao_d_en: 'Abuse of authority, oppression of state power, and humiliation of the rural worker.',
+            resposta_correta: 'd',
             explicacao_pt: 'O Soldado Amarelo usa a farda para prender e humilhar Fabiano injustamente, expondo a fragilidade do sertanejo perante as instituições.',
             explicacao_en: 'The Yellow Soldier uses his uniform to wrongfully arrest and humiliate Fabiano, exposing the migrant’s vulnerability.',
         },
@@ -592,7 +606,7 @@ console.log('Iniciando seed da equipe...');
             opcao_c_en: 'Wealthy and fortunate man.',
             opcao_d_en: 'Spiritual leader of the migrants.',
             resposta_correta: 'b',
-            explicacao_pt: 'O nome denota a sua condição de fragilidade social, resignação e submissão perante as forças econômicas e climáticas.',
+            explicacao_pt: 'O nome denota a sua condição de fragilidade social, resignation e submissão perante as forças econômicas e climáticas.',
             explicacao_en: 'The name denotes his condition of social fragility, resignation, and subjection to economic and climate forces.',
         },
     });
@@ -601,15 +615,15 @@ console.log('Iniciando seed da equipe...');
             livro_id: livro.id,
             pergunta_pt: '10. Seu Tomás da Bolandeira é visto como uma referência de admiração e respeito porque ele:',
             pergunta_en: '10. Seu Tomás da Bolandeira is viewed as a reference of admiration and respect because he:',
-            opcao_a: 'Possui uma montaria cara e armas de fogo modernas.',
-            opcao_b: 'Sabe ler, é alfabetizado e exerce o direito de voto político.',
+            opcao_a: 'Sabe ler, é alfabetizado e exerce o direito de voto político.',
+            opcao_b: 'Possui uma montaria cara e armas de fogo modernas.',
             opcao_c: 'Consegue prever com exatidão a chegada das chuvas.',
             opcao_d: 'Doou terras para que a família de Fabiano cultivasse.',
-            opcao_a_en: 'Owns an expensive horse and modern firearms.',
-            opcao_b_en: 'Knows how to read, is literate, and exercises the right to vote.',
+            opcao_a_en: 'Knows how to read, is literate, and exercises the right to vote.',
+            opcao_b_en: 'Owns an expensive horse and modern firearms.',
             opcao_c_en: 'Can accurately predict when the rain will arrive.',
             opcao_d_en: 'Donated lands for Fabiano’s family to cultivate.',
-            resposta_correta: 'b',
+            resposta_correta: 'a',
             explicacao_pt: 'Em um meio marcado pelo analfabetismo, o domínio da leitura e a participação política colocam Seu Tomás como o modelo de erudição.',
             explicacao_en: 'In an environment marked by illiteracy, reading skills and political inclusion put Seu Tomás as a model of erudition.',
         },
@@ -620,14 +634,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '11. A estrutura capitular de Vidas Secas é considerada desmontável ou não-linear porque:',
             pergunta_en: '11. The chapter structure of Vidas Secas is considered open or non-linear because:',
             opcao_a: 'Foi publicada fora de ordem propositalmente pela editora original.',
-            opcao_b: 'Os capítulos funcionam quase como contos independentes, interligados apenas pela presença da família e da seca.',
-            opcao_c: 'Muda de narrador a cada novo capítulo impresso.',
+            opcao_b: 'Muda de narrador a cada novo capítulo impresso.',
+            opcao_c: 'Os capítulos funcionam quase como contos independentes, interligados apenas pela presença da família e da seca.',
             opcao_d: 'Mistura passagens de ficção científica com o realismo tradicional.',
             opcao_a_en: 'It was intentionally published out of order by the original publisher.',
+            opcao_b_en: 'It changes the narrator with each new printed chapter.',
             opcao_b_en: 'The chapters function almost like independent short stories, linked only by the family and the drought.',
-            opcao_c_en: 'It changes the narrator with each new printed chapter.',
             opcao_d_en: 'It mixes science fiction passages with traditional realism.',
-            resposta_correta: 'b',
+            resposta_correta: 'c',
             explicacao_pt: 'Exceto pelo primeiro capítulo (mudança para a fazenda) e o último (fuga da seca), os episódios intermediários mantêm ampla autonomia.',
             explicacao_en: 'Except for the first and last chapters, the intermediate episodes retain wide autonomy.',
         },
@@ -656,14 +670,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '13. O clímax emocional do livro que expõe de forma crua a desumanização ambiental é retratado em:',
             pergunta_en: '13. The emotional climax of the book that rawly exposes environmental dehumanization is depicted in:',
             opcao_a: 'A festa de Natal ocorrida na cidade vizinha.',
-            opcao_b: 'O sacrifício e a morte trágica da cachorra Baleia.',
-            opcao_c: 'A contratação de Fabiano pelo dono da propriedade rural.',
+            opcao_b: 'A contratação de Fabiano pelo dono da propriedade rural.',
+            opcao_c: 'O sacrifício e a morte trágica da cachorra Baleia.',
             opcao_d: 'A compra da cama de lastro desejada por Sinhá Vitória.',
             opcao_a_en: 'The Christmas celebration that took place in the neighboring town.',
-            opcao_b_en: 'The sacrifice and tragic death of the dog Baleia.',
-            opcao_c_en: 'The hiring of Fabiano by the rural property owner.',
+            opcao_b_en: 'The hiring of Fabiano by the rural property owner.',
+            opcao_c_en: 'The sacrifice and tragic death of the dog Baleia.',
             opcao_d_en: 'The purchase of the cord bed desired by Sinhá Vitória.',
-            resposta_correta: 'b',
+            resposta_correta: 'c',
             explicacao_pt: 'A morte de Baleia, executada por Fabiano por suspeita de hidrofobia, marca o sofrimento máximo do núcleo familiar.',
             explicacao_en: 'The death of Baleia, shot by Fabiano under suspicion of rabies, marks the ultimate suffering of the family unit.',
         },
@@ -692,14 +706,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '15. O desfecho da obra manifesta um ciclo eterno na vida dos retirantes porque eles terminam o livro:',
             pergunta_en: '15. The ending of the work manifests an eternal cycle in the life of the migrants because they finish the book:',
             opcao_a: 'Enriquecendo com a descoberta de ouro nas serras.',
-            opcao_b: 'Fugindo novamente da seca em direção a uma cidade grande indeterminada com incerteza.',
-            opcao_c: 'Comprando a fazenda do antigo patrão opressor.',
-            opcao_d: 'Fixando moradia permanente e próspera em terras litorâneas.',
+            opcao_b: 'Comprando a fazenda do antigo patrão opressor.',
+            opcao_c: 'Fixando moradia permanente e próspera em terras litorâneas.',
+            opcao_d: 'Fugindo novamente da seca em direção a uma cidade grande indeterminada com incerteza.',
             opcao_a_en: 'Becoming wealthy by discovering gold in the mountains.',
-            opcao_b_en: 'Fleeing the drought once again toward an uncertain large city with doubts.',
-            opcao_c_en: 'Buying the farm from their former oppressive boss.',
-            opcao_d_en: 'Establishing permanent and prosperous residence on coastal lands.',
-            resposta_correta: 'b',
+            opcao_b_en: 'Buying the farm from their former oppressive boss.',
+            opcao_c_en: 'Establishing permanent and prosperous residence on coastal lands.',
+            opcao_d_en: 'Fleeing the drought once again toward an uncertain large city with doubts.',
+            resposta_correta: 'd',
             explicacao_pt: 'O fim repete o início: a seca retorna e força a família a caminhar sem rumo definitivo, demonstrando a circularidade da miséria.',
             explicacao_en: 'The end repeats the beginning: the drought returns, forcing the family to migrate aimlessly, showing the circularity of misery.',
         },
@@ -728,14 +742,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '17. Em qual estado do Nordeste brasileiro nasceu Graciliano Ramos, servindo de bagagem para sua literatura regionalista?',
             pergunta_en: '17. In which state of the Brazilian Northeast was Graciliano Ramos born, providing background for his regionalist literature?',
             opcao_a: 'Bahia',
-            opcao_b: 'Alagoas',
-            opcao_c: 'Ceará',
-            opcao_d: 'Pernambuco',
+            opcao_b: 'Ceará',
+            opcao_c: 'Pernambuco',
+            opcao_d: 'Alagoas',
             opcao_a_en: 'Bahia',
-            opcao_b_en: 'Alagoas',
-            opcao_c_en: 'Ceará',
-            opcao_d_en: 'Pernambuco',
-            resposta_correta: 'b',
+            opcao_b_en: 'Ceará',
+            opcao_c_en: 'Pernambuco',
+            opcao_d_en: 'Alagoas',
+            resposta_correta: 'd',
             explicacao_pt: 'Graciliano Ramos nasceu em Quebrangulo, Alagoas, em 1892, e chegou a ser prefeito de Palmeira dos Índios.',
             explicacao_en: 'Graciliano Ramos was born in Quebrangulo, Alagoas, in 1892, and even served as mayor of Palmeira dos Índios.',
         },
@@ -754,7 +768,7 @@ console.log('Iniciando seed da equipe...');
             opcao_c_en: 'His wife Sinhá Vitória arrived in time to hold his arm back.',
             opcao_d_en: 'He noticed that his cowboy knife was completely dull.',
             resposta_correta: 'b',
-            explicacao_pt: 'Fabiano poupa o soldado ao ver que, sem o respaldo do Estado nas redondezas, ele era um ser frágil e assustado.',
+            explicacao_pt: 'Fabiano poupa o soldado ao ver que, sem o respaldo do State nas redondezas, ele era um ser frágil e assustado.',
             explicacao_en: 'Fabiano spares the soldier upon seeing that, without the state support nearby, he was a fragile and frightened entity.',
         },
     });
@@ -764,14 +778,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '19. Qual característica climática e geográfica rege as ações e define a migração forçada da família central?',
             pergunta_en: '19. What climatic and geographic characteristic rules actions and defines the forced migration of the core family?',
             opcao_a: 'As chuvas torrenciais inundando as plantações de cana.',
-            opcao_b: 'A seca severa e prolongada no semiárido nordestino.',
-            opcao_c: 'O frio extremo impedindo a sobrevivência do gado.',
+            opcao_b: 'O frio extremo impedindo a sobrevivência do gado.',
+            opcao_c: 'A seca severa e prolongada no semiárido nordestino.',
             opcao_d: 'Terremotos destruindo as vilas de taipa.',
             opcao_a_en: 'Torrencial rains flooding the sugarcane fields.',
-            opcao_b_en: 'The severe and prolonged drought in the Northeastern semi-arid region.',
-            opcao_c_en: 'Extreme cold stopping cattle survival.',
+            opcao_b_en: 'Extreme cold stopping cattle survival.',
+            opcao_c_en: 'The severe and prolonged drought in the Northeastern semi-arid region.',
             opcao_d_en: 'Earthquakes destroying mud brick villages.',
-            resposta_correta: 'b',
+            resposta_correta: 'c',
             explicacao_pt: 'A estiagem desidrata o sertão, mata a vegetação e força os animais e humanos ao êxodo rural.',
             explicacao_en: 'The drought dehydrates the hinterland, kills vegetation, and forces animals and humans into rural exodus.',
         },
@@ -781,15 +795,15 @@ console.log('Iniciando seed da equipe...');
             livro_id: livro.id,
             pergunta_pt: '20. A relação linguística de Fabiano com o mundo exterior é marcada por:',
             pergunta_en: '20. Fabiano’s linguistic relationship with the outside world is marked by:',
-            opcao_a: 'Monólogos longos e discursos políticos inflamados.',
-            opcao_b: 'Grunhidos, frases monossilábicas e dificuldades severas de expressão verbal.',
+            opcao_a: 'Grunhidos, frases monossilábicas e dificuldades severas de expressão verbal.',
+            opcao_b: 'Monólogos longos e discursos políticos inflamados.',
             opcao_c: 'Uso de vocabulário rebuscado aprendido na escola.',
             opcao_d: 'Fluência em línguas estrangeiras aprendidas com viajantes.',
-            opcao_a_en: 'Long monologues and fiery political speeches.',
-            opcao_b_en: 'Grunts, monosyllabic phrases, and severe difficulties in verbal expression.',
+            opcao_a_en: 'Grunts, monosyllabic phrases, and severe difficulties in verbal expression.',
+            opcao_b_en: 'Long monologues and fiery political speeches.',
             opcao_c_en: 'Use of sophisticated vocabulary learned in school.',
             opcao_d_en: 'Fluency in foreign languages learned from travelers.',
-            resposta_correta: 'b',
+            resposta_correta: 'a',
             explicacao_pt: 'Fabiano considera-se um bicho e sente profunda vergonha por não saber articular palavras complexas como as pessoas da cidade.',
             explicacao_en: 'Fabiano considers himself a beast and feels deep shame for not knowing how to speak complex words like city people.',
         },
@@ -818,14 +832,14 @@ console.log('Iniciando seed da equipe...');
             pergunta_pt: '22. Como Sinhá Vitória consegue demonstrar uma ligeira superioridade intelectual em relação a Fabiano?',
             pergunta_en: '22. How does Sinhá Vitória manage to show a slight intellectual superiority over Fabiano?',
             opcao_a: 'Ela escreve poemas e contos artísticos nos momentos livres.',
-            opcao_b: 'Ela consegue realizar contas aritméticas básicas usando grãos de milho de forma rústica.',
-            opcao_c: 'Ela possui diploma de professora do ensino primário.',
-            opcao_d: 'Ela sabe operar máquinas agrícolas industriais.',
+            opcao_b: 'Ela possui diploma de professora do ensino primário.',
+            opcao_c: 'Ela sabe operar máquinas agrícolas industriais.',
+            opcao_d: 'Ela consegue realizar contas aritméticas básicas usando grãos de milho de forma rústica.',
             opcao_a_en: 'She writes poems and artistic stories in her free moments.',
-            opcao_b_en: 'She manages to perform basic arithmetic calculations using corn kernels in a rustic way.',
-            opcao_c_en: 'She holds a diploma as a primary school teacher.',
-            opcao_d_en: 'She knows how to operate industrial farm machinery.',
-            resposta_correta: 'b',
+            opcao_b_en: 'She holds a diploma as a primary school teacher.',
+            opcao_c_en: 'She knows how to operate industrial farm machinery.',
+            opcao_d_en: 'She manages to perform basic arithmetic calculations using corn kernels in a rustic way.',
+            resposta_correta: 'd',
             explicacao_pt: 'Suas contas rudimentares servem de alerta para Fabiano perceber que está sendo constantemente enganado pelo patrão.',
             explicacao_en: 'Her rudimentary math alerts Fabiano that he is being constantly cheated by his landlord.',
         },
@@ -853,15 +867,15 @@ console.log('Iniciando seed da equipe...');
             livro_id: livro.id,
             pergunta_pt: '24. O conceito geopolítico atual que melhor define as famílias que se deslocam devido à destruição climática retratada é:',
             pergunta_en: '24. The current geopolitical concept that best defines families displaced due to climate destruction is:',
-            opcao_a: 'Turistas de aventura ecológica.',
-            opcao_b: 'Refugiados climáticos ou retirantes.',
+            opcao_a: 'Refugiados climáticos ou retirantes.',
+            opcao_b: 'Turistas de aventura ecológica.',
             opcao_c: 'Imigrantes corporativos de alta renda.',
             opcao_d: 'Nômades digitais globais.',
-            opcao_a_en: 'Ecological adventure tourists.',
-            opcao_b_en: 'Climate refugees or rural migrants.',
+            opcao_a_en: 'Climate refugees or rural migrants.',
+            opcao_b_en: 'Ecological adventure tourists.',
             opcao_c_en: 'High-income corporate immigrants.',
             opcao_d_en: 'Global digital nomads.',
-            resposta_correta: 'b',
+            resposta_correta: 'a',
             explicacao_pt: 'Vidas Secas funciona como um registro pioneiro dos movimentos migratórios causados por desastres ambientais.',
             explicacao_en: 'Vidas Secas works as a pioneer chronicle of migratory movements caused by environmental disasters.',
         },
@@ -885,24 +899,7 @@ console.log('Iniciando seed da equipe...');
         },
     });
 
-    await prisma.simulado.create({
-        data: {
-            livro_id: livro.id,
-            pergunta_pt: '25. Por que a verossimilhança é um elemento central de sustentação e impacto na leitura de Vidas Secas?',
-            pergunta_en: '25. Why is verisimilitude a core element of support and impact in the reading of Vidas Secas?',
-            opcao_a: 'Porque insere elementos fantásticos e mágicos impossíveis de ocorrer no mundo real.',
-            opcao_b: 'Porque os problemas, reações e ambientes exibidos reproduzem com precisão convincente a realidade real do sertão.',
-            opcao_c: 'Porque foca exclusivamente em finais felizes e soluções milagrosas.',
-            opcao_d: 'Porque reconta fatos históricos copiados de enciclopédias oficiais verbatim.',
-            opcao_a_en: 'Because it inserts fantastic and magical elements impossible to occur in the real world.',
-            opcao_b_en: 'Because the problems, reactions, and environments shown accurately and convincingly mirror the true reality of the hinterland.',
-            opcao_c_en: 'Because it focuses exclusively on happy endings and miraculous solutions.',
-            opcao_d_en: 'Because it recounts historical facts copied from official encyclopedias verbatim.',
-            resposta_correta: 'b',
-            explicacao_pt: 'A verossimilhança garante que a denúncia social ecoe fortemente no leitor ao expor dores humanas plausíveis.',
-            explicacao_en: 'Verisimilitude guarantees that the social critique resonates with the reader by exposing believable human pain.',
-        },
-    });
+    
 }
 
 console.log('✅ Seed finalizado com sucesso!');

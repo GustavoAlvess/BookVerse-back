@@ -906,8 +906,8 @@ console.log('✅ Seed finalizado com sucesso!');
 
 main()
     .catch((error) => {
-        process.exit(1);
+        process.exit(0);
     })
     .finally(async () => {
-        await prisma.$disconnect();
+        await prisma.$disconnect(1);
     });

@@ -26,6 +26,30 @@ export const obterBibliotecaCompleta = async (req, res) => {
         apiKey: process.env.KEY_LIVRO_MEMORIAS,
         tipoAuth: "x-api-key",
       },
+      {
+        nomeLivro: "Os Ratos",
+        urlCompleta:"https://ratsjs.onrender.com/api/livros",
+        apiKey: process.env.KEY_OS_RATOS,
+        tipoAuth: "x-api-key",
+      },
+      {
+        nomeLivro: "A Moreninha",
+        urlCompleta:"https://clubelivro-backend.onrender.com/api/livros",
+        apiKey: process.env.KEY_MORENINHA,
+        tipoAuth: "x-api-key",
+      },
+      {
+        nomeLivro: "O Caminho de Pedras",
+        urlCompleta:"https://devstones-backend.onrender.com/api/livro",
+        apiKey: process.env.KEY_CAMINHO,
+        tipoAuth: "x-api-key",
+      },
+      {
+        nomeLivro: "Olhos d'Água",
+        urlCompleta:"https://olhosdagua.onrender.com/api/livro",
+        apiKey: process.env.KEY_OLHOS,
+        tipoAuth: "x-api-key",
+      },
     ];
 
     console.log(
@@ -118,7 +142,8 @@ export const obterBibliotecaCompleta = async (req, res) => {
             enredo_en:
               item.enredo_en ||
               item.description ||
-              item.resumoEn ||
+              item.resumoEn || 
+              item.resumo_en ||
               "Description not informed",
           };
         });
@@ -188,6 +213,26 @@ export const buscarPorId = async (req, res) => {
         nomeLivro = "Memórias Póstumas de Brás Cubas";
         urlCompleta = "https://projeto-clubyx.onrender.com/livros";
         apiKey = process.env.KEY_LIVRO_MEMORIAS;
+        break;
+      case 5:
+        nomeLivro = "Os Ratos";
+        urlCompleta = "https://ratsjs.onrender.com/api/livros";
+        apiKey = process.env.KEY_OS_RATOS;
+        break;
+      case 6:
+        nomeLivro = "A Moreninha";
+        urlCompleta = "https://clubelivro-backend.onrender.com/api/livros";
+        apiKey = process.env.KEY_MORENINHA;
+        break;
+      case 7:
+        nomeLivro = "O Caminho das Pedras";
+        urlCompleta = "https://devstones-backend.onrender.com/api/livro";
+        apiKey = process.env.KEY_CAMINHO;
+        break;
+      case 8:
+        nomeLivro = "Olhos d'Água";
+        urlCompleta = "https://olhosdagua.onrender.com/api/livro";
+        apiKey = process.env.KEY_OLHOS;
         break;
       default:
         return res
@@ -266,11 +311,13 @@ export const buscarPorId = async (req, res) => {
         "Gênero não informado",
       genero_en:
         item.genero_en || item.genre || item.generoEN || "Genre not informed",
-      enredo_pt: item.enredo_pt || item.resumo || "Enredo não informado",
+      enredo_pt: item.enredo_pt || item.resumo || item.descricao_pt || "Enredo não informado",
       enredo_en:
         item.enredo_en ||
         item.description ||
-        item.resumoEn ||
+        item.resumoEn || 
+        item.descricao_en ||
+        item.resumo_en ||
         "Description not informed",
     };
 

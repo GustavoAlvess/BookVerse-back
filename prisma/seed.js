@@ -32,7 +32,6 @@ async function main() {
         },
     });
 
-console.log('Iniciando seed da equipe...');
 
 
    const membroEquipe1 = await prisma.equipe.create({
@@ -639,7 +638,7 @@ console.log('Iniciando seed da equipe...');
             opcao_d: 'Mistura passagens de ficção científica com o realismo tradicional.',
             opcao_a_en: 'It was intentionally published out of order by the original publisher.',
             opcao_b_en: 'It changes the narrator with each new printed chapter.',
-            opcao_b_en: 'The chapters function almost like independent short stories, linked only by the family and the drought.',
+            opcao_c_en: 'The chapters function almost like independent short stories, linked only by the family and the drought.',
             opcao_d_en: 'It mixes science fiction passages with traditional realism.',
             resposta_correta: 'c',
             explicacao_pt: 'Exceto pelo primeiro capítulo (mudança para a fazenda) e o último (fuga da seca), os episódios intermediários mantêm ampla autonomia.',
@@ -899,15 +898,16 @@ console.log('Iniciando seed da equipe...');
         },
     });
 
-    
+    console.log('✅ Seed iniciado com sucesso!');
+
 }
 
-console.log('✅ Seed finalizado com sucesso!');
 
 main()
     .catch((error) => {
-        process.exit(0);
+        console.error('Erro no seed:', error);
+        process.exit(1);
     })
     .finally(async () => {
-        await prisma.$disconnect(1);
+        await prisma.$disconnect();
     });

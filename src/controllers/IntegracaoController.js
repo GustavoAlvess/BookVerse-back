@@ -50,6 +50,12 @@ export const obterBibliotecaCompleta = async (req, res) => {
         apiKey: process.env.KEY_OLHOS,
         tipoAuth: "x-api-key",
       },
+      {
+        nomeLivro: "Canção para ninar menino grande",
+        urlCompleta:"https://atividade-portugues-backend.onrender.com/api/livro",
+        apiKey: process.env.KEY_CANCAO,
+        tipoAuth: "x-api-key",
+      },
     ];
 
     console.log(
@@ -233,6 +239,11 @@ export const buscarPorId = async (req, res) => {
         nomeLivro = "Olhos d'Água";
         urlCompleta = "https://olhosdagua.onrender.com/api/livro";
         apiKey = process.env.KEY_OLHOS;
+        break;
+      case 9:
+        nomeLivro = "Canção para ninar menino grande";
+        urlCompleta = "https://atividade-portugues-backend.onrender.com/api/livro";
+        apiKey = process.env.KEY_CANCAO;
         break;
       default:
         return res

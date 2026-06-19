@@ -125,6 +125,7 @@ export const obterBibliotecaCompleta = async (req, res) => {
               item.capa ||
               item.image ||
               item.capaURL ||
+              item.capaURl ||
               item.foto ||
               item.capa_url ||
               null,
@@ -310,6 +311,7 @@ export const buscarPorId = async (req, res) => {
         item.capa ||
         item.image ||
         item.capaURL ||
+        item.capaURl ||
         item.foto ||
         item.capa_url ||
         null,
